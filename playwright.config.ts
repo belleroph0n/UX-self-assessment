@@ -6,7 +6,8 @@ const executablePath = process.env.CHROMIUM_PATH || undefined;
 
 export default defineConfig({
   testDir: "tests/e2e",
-  reporter: [["list"]],
+  // On GitHub, failures also appear as annotations on the pull request
+  reporter: process.env.CI ? [["github"], ["list"]] : [["list"]],
   use: {
     baseURL: "http://localhost:4173",
     launchOptions: { executablePath },
