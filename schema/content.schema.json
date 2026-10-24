@@ -1,0 +1,144 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "ux-health-check/content.schema.json",
+  "title": "UX Health Check content",
+  "type": "object",
+  "required": ["meta", "categories", "criteria", "scoring", "materiality", "tiers", "sources", "profile"],
+  "$defs": {
+    "nonEmpty": { "type": "string", "minLength": 1 },
+    "url": { "type": "string", "pattern": "^https://" },
+    "applies": { "enum": ["all", "public-facing", "transactional", "authenticated", "uses-media", "uses-cms", "uses-ai"] }
+  },
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["title", "content_version", "released"],
+      "properties": {
+        "title": { "$ref": "#/$defs/nonEmpty" },
+        "content_version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+$" },
+        "released": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" }
+      }
+    },
+    "categories": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "name", "points", "description"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Z]{3}$" },
+          "name": { "$ref": "#/$defs/nonEmpty" },
+          "points": { "type": "number", "exclusiveMinimum": 0 },
+          "description": { "$ref": "#/$defs/nonEmpty" }
+        }
+      }
+    },
+    "criteria": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "category", "subcategory", "question", "evidence", "weight", "critical", "recommendation", "source", "nz_status", "applies_to", "link"],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[A-Z]{3}-[0-9]{2}$" },
+          "category": { "type": "string", "pattern": "^[A-Z]{3}$" },
+          "subcategory": { "$ref": "#/$defs/nonEmpty" },
+          "question": { "$ref": "#/$defs/nonEmpty" },
+          "evidence": { "$ref": "#/$defs/nonEmpty" },
+          "weight": { "enum": [1, 2, 3] },
+          "critical": { "type": "boolean" },
+          "recommendation": { "$ref": "#/$defs/nonEmpty" },
+          "source": { "$ref": "#/$defs/nonEmpty" },
+          "source_version": { "type": "string" },
+          "nz_status": { "enum": ["mandatory", "recommended", "good-practice"] },
+          "applies_to": { "$ref": "#/$defs/applies" },
+          "review_note": { "type": "string" },
+          "link": {
+            "type": "object", "additionalProperties": false, "required": ["label", "url"],
+            "properties": {
+              "label": { "$ref": "#/$defs/nonEmpty" },
+              "url": { "anyOf": [ { "const": "" }, { "$ref": "#/$defs/url" } ] }
+            }
+          }
+        }
+      }
+    },
+    "scoring": {
+      "type": "object",
+      "required": ["answer_points", "critical_cap", "ratings", "key_recommendations", "simple_set_weight"],
+      "properties": {
+        "answer_points": {
+          "type": "object", "required": ["yes", "partial", "no"],
+          "properties": { "yes": { "type": "number" }, "partial": { "type": "number" }, "no": { "type": "number" } }
+        },
+        "critical_cap": { "type": "number", "minimum": 0, "maximum": 100 },
+        "ratings": {
+          "type": "array", "minItems": 2,
+          "items": {
+            "type": "object", "required": ["id", "label", "min", "colour"],
+            "properties": {
+              "id": { "$ref": "#/$defs/nonEmpty" }, "label": { "$ref": "#/$defs/nonEmpty" },
+              "min": { "type": "number", "minimum": 0, "maximum": 100 },
+              "colour": { "enum": ["green", "yellow", "amber", "red"] }
+            }
+          }
+        },
+        "key_recommendations": { "type": "integer", "minimum": 1 },
+        "simple_set_weight": { "enum": [1, 2, 3] }
+      }
+    },
+    "materiality": {
+      "type": "object", "required": ["floor_minimum", "levels", "factors"],
+      "properties": {
+        "floor_minimum": { "type": "integer", "minimum": 1, "maximum": 5 },
+        "levels": {
+          "type": "array", "minItems": 5, "maxItems": 5,
+          "items": {
+            "type": "object", "required": ["rating", "label", "meaning", "colour"],
+            "properties": {
+              "rating": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "label": { "$ref": "#/$defs/nonEmpty" }, "meaning": { "$ref": "#/$defs/nonEmpty" },
+              "colour": { "enum": ["green", "yellow-green", "yellow", "orange", "red"] }
+            }
+          }
+        },
+        "factors": {
+          "type": "array", "minItems": 1,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["id", "factor", "question", "anchors", "weight", "floor_trigger"],
+            "properties": {
+              "id": { "type": "string", "pattern": "^MAT-[0-9]{2}$" },
+              "factor": { "$ref": "#/$defs/nonEmpty" }, "question": { "$ref": "#/$defs/nonEmpty" },
+              "anchors": { "type": "array", "minItems": 5, "maxItems": 5, "items": { "$ref": "#/$defs/nonEmpty" } },
+              "weight": { "type": "number", "exclusiveMinimum": 0 },
+              "floor_trigger": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "tiers": {
+      "type": "object", "required": ["rating_to_tier", "tiers"],
+      "properties": {
+        "rating_to_tier": {
+          "type": "object", "required": ["1", "2", "3", "4", "5"],
+          "additionalProperties": { "type": "string" }
+        },
+        "tiers": {
+          "type": "array", "minItems": 1,
+          "items": { "type": "object", "required": ["id", "name", "target_rating"] }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "items": { "type": "object", "required": ["name", "publisher", "url"], "properties": { "url": { "$ref": "#/$defs/url" } } }
+    },
+    "profile": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false, "required": ["id", "question"],
+        "properties": { "id": { "$ref": "#/$defs/applies" }, "question": { "$ref": "#/$defs/nonEmpty" }, "hint": { "type": "string" } }
+      }
+    }
+  }
+}

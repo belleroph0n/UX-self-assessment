@@ -1,0 +1,436 @@
+# Register of standards, laws, guidance and tools referenced by the criteria.
+# Links are checked automatically by the link-check workflow.
+
+sources:
+- name: NZ Government Web Accessibility Standard 1.2
+  publisher: GCDO (Government Digital Delivery Agency)
+  status: In force from 17 Mar 2025; WCAG 2.2 Level AA with listed exceptions; s4 assessment and reporting. To be replaced by the Digital Accessibility Standard (expected early 2027).
+  nz_status: Mandatory (NZ)
+  url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/web-accessibility-standard-1-2
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: ACC-01, ACC-12, ACC-15, CMG-02
+- name: NZ Government Web Usability Standard 1.4
+  publisher: GCDO (Government Digital Delivery Agency)
+  status: In force from 17 Mar 2025. s2.2 Government identity, s2.3 Contact information (NZ Relay at s2.3.3), s2.4 Copyright, s2.5 Privacy. Requirements expected to become guidance in the updated Digital Service Design Standard.
+  nz_status: Mandatory (NZ)
+  url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/web-usability-standard-1-4
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: BRD-02, SEC-07, SUP-01, LEG-01
+- name: NZ government logo markup
+  publisher: GCDO (Government Digital Delivery Agency)
+  status: Guidance supporting Web Usability Standard s2.2.
+  nz_status: Recommended (NZ)
+  url: https://www.digital.govt.nz/standards-and-guidance/design-and-ux/usability/nz-government-logo-markup
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: BRD-02
+- name: Digital Accessibility Standard (DAS)
+  publisher: GCDO (Government Digital Delivery Agency)
+  status: Draft. Public consultation 13 Jul - 7 Aug 2026; final standard expected early 2027; based on EN 301 549; will replace the Web Accessibility Standard.
+  nz_status: Recommended (NZ) - draft
+  url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/digital-accessibility-standard
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: ACC-01, ACC-13, CON-07, SUP-03
+- name: Draft DAS - large print summary
+  publisher: GCDO (Government Digital Delivery Agency)
+  status: Consultation summary (Jul 2026). Source of the draft requirement to reply to accessibility questions within 3 days.
+  nz_status: Recommended (NZ) - draft
+  url: https://www.digital.govt.nz/assets/Standards-guidance/NZ-government-web-standards/DAS/Digital-Accessibility-Standard-DAS-Large-print.pdf
+  link_check: Search-indexed (automated fetch blocked)
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: SUP-03
+- name: Centralised Web Accessibility Checker (CWAC)
+  publisher: Department of Internal Affairs / GCDO
+  status: Open-source automated WCAG 2.2 checker used for quarterly monitoring of government websites.
+  nz_status: Recommended (NZ)
+  url: https://github.com/GOVTNZ/cwac
+  link_check: Fetched - live
+  licence: Open source under GPL-3.0 (Crown copyright).
+  used_in: ACC-14
+- name: Digital Service Design Standard
+  publisher: GCDO (Government Digital Delivery Agency)
+  status: '2018 version: 12 principles. Proposed updated principles published in draft; refresh underway.'
+  nz_status: Recommended (NZ)
+  url: https://www.digital.govt.nz/standards-and-guidance/digital-service-design-standard
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: ACC-16, UXD-02, CON-06, CON-08, SUP-06, LEG-08, CMG-06
+- name: Web Content Accessibility Guidelines (WCAG) 2.2
+  publisher: W3C
+  status: W3C Recommendation (current version dated 12 Dec 2024). Also published as ISO/IEC 40500:2025.
+  nz_status: Mandatory (NZ) via WAS 1.2
+  url: https://www.w3.org/TR/WCAG22/
+  link_check: Fetched - live
+  licence: W3C Document License - may be quoted with attribution.
+  used_in: ACC-01 to ACC-13, UXD-01, CON-05, BRD-03, SUP-02
+- name: W3C Accessibility Guidelines (WCAG) 3.0
+  publisher: W3C
+  status: Working Draft dated 10 Sep 2026. Not final; not yet referenced by NZ standards.
+  nz_status: Not applicable yet
+  url: https://www.w3.org/TR/wcag-3.0/
+  link_check: Fetched - live
+  licence: W3C Document License.
+  used_in: Watch only
+- name: WCAG-EM (Evaluation Methodology)
+  publisher: W3C
+  status: WCAG-EM 2.0 published 23 Jul 2026 (covers apps and other digital products); WCAG-EM 1.0 still available.
+  nz_status: Good practice
+  url: https://www.w3.org/WAI/test-evaluate/conformance/wcag-em/
+  link_check: Fetched - live
+  licence: W3C Document License.
+  used_in: ACC-02
+- name: Accessibility Maturity Model
+  publisher: W3C
+  status: W3C Group Note, 4 Nov 2025.
+  nz_status: Good practice
+  url: https://www.w3.org/TR/maturity-model/
+  link_check: Fetched - live
+  licence: W3C Document License.
+  used_in: ACC-17
+- name: Authoring Tool Accessibility Guidelines (ATAG) 2.0
+  publisher: W3C
+  status: W3C Recommendation, 24 Sep 2015.
+  nz_status: Good practice
+  url: https://www.w3.org/TR/ATAG20/
+  link_check: Fetched - live
+  licence: W3C Document License.
+  used_in: CMG-03
+- name: EN 301 549 Accessibility requirements for ICT products and services
+  publisher: ETSI / CEN / CENELEC
+  status: V4.1.1 (2026-09), adopted 24 Aug 2026. Basis of the draft NZ DAS.
+  nz_status: Recommended (NZ) - via draft DAS
+  url: https://www.etsi.org/deliver/etsi_en/301500_301599/301549/04.01.01_60/en_301549v040101p.pdf
+  link_check: Fetched - live
+  licence: Free download; ETSI copyright - reference, don't reproduce.
+  used_in: Future accessibility criteria
+- name: GOV.UK Service Standard
+  publisher: UK Government Digital Service
+  status: 14 points, current.
+  nz_status: Good practice
+  url: https://www.gov.uk/service-manual/service-standard
+  link_check: Fetched - live
+  licence: Open Government Licence v3.0 - reusable with attribution.
+  used_in: UXD-02, UXD-03, UXD-08, UXD-09, OPS-01, OPS-04, OPS-05, OPS-10, OPS-11, SUP-06, CMG-01, MSR-01, MSR-04
+- name: GOV.UK Service Manual - Designing for different browsers and devices
+  publisher: UK Government Digital Service
+  status: Updated 30 Jan 2026.
+  nz_status: Good practice
+  url: https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices
+  link_check: Fetched - live
+  licence: Open Government Licence v3.0.
+  used_in: UXD-11
+- name: Digital Service Standard 2.0 (Australia)
+  publisher: Digital Transformation Agency
+  status: 10 criteria; mandatory for Australian Government services.
+  nz_status: Good practice
+  url: https://www.digital.gov.au/policy/digital-experience/digital-service-standard
+  link_check: Search-indexed (automated fetch blocked)
+  licence: Site content CC BY 4.0 - reusable with attribution.
+  used_in: ACC-16, UXD-02, UXD-08, UXD-09, UXD-12, SUP-06, CMG-06
+- name: Digital Performance Standard (Australia)
+  publisher: Digital Transformation Agency
+  status: '5 criteria: monitoring framework, availability, success, customer needs, analyse and report.'
+  nz_status: Good practice
+  url: https://www.digital.gov.au/policy/digital-experience/digital-performance-standard
+  link_check: Fetched - live
+  licence: Site content CC BY 4.0 - reusable with attribution.
+  used_in: OPS-01, OPS-02, OPS-11, SUP-05, MSR-01, MSR-03
+- name: OMB M-23-22 Delivering a Digital-First Public Experience (US)
+  publisher: US Office of Management and Budget
+  status: Memorandum dated 22 Sep 2023; seven pillars (analytics, accessibility, branding, content, design, search, digitisation).
+  nz_status: Good practice
+  url: https://www.whitehouse.gov/wp-content/uploads/2023/09/M-23-22-Delivering-a-Digital-First-Public-Experience.pdf
+  link_check: Fetched - live
+  licence: US federal government work - generally public domain.
+  used_in: UXD-01, UXD-06, UXD-10, CON-04, BRD-01, BRD-04, MSR-02
+- name: OWASP Application Security Verification Standard (ASVS)
+  publisher: OWASP
+  status: 5.0.0 (stable, May 2025). 17 chapters, V1-V17.
+  nz_status: Good practice
+  url: https://owasp.org/projects/asvs
+  link_check: Fetched - live
+  licence: CC BY-SA 4.0 (share-alike). Referenced by chapter ID only - no ASVS text reproduced in this library.
+  used_in: SEC-02, SEC-04, SEC-05, SEC-09, SEC-10, OPS-03, MSR-02
+- name: NZ Information Security Manual (NZISM)
+  publisher: NCSC (GCSB)
+  status: v3.9 released - check NZISM latest updates for the current version.
+  nz_status: Mandatory (NZ) for mandated agencies
+  url: https://www.ncsc.govt.nz/nzism/
+  link_check: Fetched - live
+  licence: Check terms on site.
+  used_in: SEC-01, SEC-03, SEC-04, SEC-05, SEC-09, SEC-10, SEC-11, OPS-08
+- name: Protective Security Requirements (PSR) - annual self-assessment
+  publisher: NCSC (GCSB)
+  status: Annual self-assessment against 20 mandatory requirements.
+  nz_status: Mandatory (NZ) for mandated agencies
+  url: https://www.ncsc.govt.nz/protect-your-organisation/psr-annual-self-assessment/
+  link_check: Fetched - live
+  licence: Check terms on site.
+  used_in: SEC-01
+- name: Identification Standards
+  publisher: GCDO (Government Digital Delivery Agency)
+  status: Current NZ Government identification management standards.
+  nz_status: Recommended (NZ)
+  url: https://www.digital.govt.nz/standards-and-guidance/identity/identification-management/identification-standards
+  link_check: Search-indexed (automated fetch blocked)
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: SEC-05
+- name: RealMe
+  publisher: Department of Internal Affairs
+  status: Government login and verified identity service.
+  nz_status: Recommended (NZ)
+  url: https://www.realme.govt.nz/en-nz/
+  link_check: Fetched - live
+  licence: Service - not a source of reusable text.
+  used_in: SEC-05
+- name: Privacy Act 2020
+  publisher: NZ Parliament
+  status: In force (version as at 27 Nov 2025).
+  nz_status: Mandatory (NZ)
+  url: https://www.legislation.govt.nz/act/public/2020/31/en/latest/
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: UXD-12, SEC-06, SEC-07, SEC-08, LEG-03, MSR-02
+- name: Privacy impact assessments
+  publisher: Office of the Privacy Commissioner
+  status: Guidance, templates and how-to guide.
+  nz_status: Recommended (NZ)
+  url: https://www.privacy.org.nz/responsibilities/privacy-impact-assessments/
+  link_check: Fetched - live
+  licence: Check terms on site.
+  used_in: SEC-06
+- name: Plain Language Act 2022
+  publisher: NZ Parliament
+  status: In force; applies to public service agencies and Crown agents. A repeal bill was before Parliament (see next row).
+  nz_status: Mandatory (NZ) for covered agencies
+  url: https://www.legislation.govt.nz/act/public/2022/0054/latest/whole.html
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: CON-01
+- name: Plain Language Act Repeal Bill
+  publisher: NZ Parliament
+  status: Government Bill 132-1 (2025); first reading 1 Apr 2025; not enacted at 24 Oct 2026.
+  nz_status: Watch
+  url: https://www.legislation.govt.nz/bill/government/2025/132/en/latest/
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: CON-01
+- name: Public Records Act 2005
+  publisher: NZ Parliament
+  status: In force.
+  nz_status: Mandatory (NZ)
+  url: https://www.legislation.govt.nz/act/public/2005/0040/latest/whole.html
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: LEG-02
+- name: Information and Records Management Standard (16/S1)
+  publisher: Archives New Zealand
+  status: Issued under s27 of the Public Records Act 2005; page updated 14 Aug 2026.
+  nz_status: Mandatory (NZ)
+  url: https://archives.govt.nz/manage-information/how-to-manage-your-information/key-obligations-and-the-standard/information-and-records-management-standard
+  link_check: Fetched - live
+  licence: Check terms on site.
+  used_in: LEG-02
+- name: Official Information Act 1982
+  publisher: NZ Parliament
+  status: In force (version as at 5 Apr 2025).
+  nz_status: Mandatory (NZ)
+  url: https://www.legislation.govt.nz/act/public/1982/156/en/latest/
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: LEG-03
+- name: Human Rights Act 1993
+  publisher: NZ Parliament
+  status: In force (version as at 27 Nov 2025).
+  nz_status: Mandatory (NZ)
+  url: https://www.legislation.govt.nz/act/public/1993/82/en/latest/
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: LEG-04
+- name: New Zealand Bill of Rights Act 1990
+  publisher: NZ Parliament
+  status: In force (version as at 30 Aug 2022).
+  nz_status: Mandatory (NZ)
+  url: https://legislation.govt.nz/act/public/1990/109/en/latest/
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: LEG-04
+- name: Public Service Act 2020, s14 Crown's relationships with Māori
+  publisher: NZ Parliament
+  status: In force.
+  nz_status: Mandatory (NZ) - context
+  url: https://www.legislation.govt.nz/act/public/2020/0040/latest/LMS356875.html
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: LEG-08
+- name: Te Ture mō Te Reo Māori 2016 (Māori Language Act 2016)
+  publisher: NZ Parliament
+  status: In force.
+  nz_status: Recommended (NZ) - context
+  url: https://www.legislation.govt.nz/act/public/2016/0017/latest/DLM6174566.html
+  link_check: Fetched - live
+  licence: NZ legislation - Crown copyright; may be reproduced free of charge (see legislation.govt.nz copyright notice).
+  used_in: CON-06
+- name: Algorithm Charter for Aotearoa New Zealand
+  publisher: Stats NZ
+  status: Signatory agencies commit to transparency and accountability in algorithm use.
+  nz_status: Recommended (NZ)
+  url: https://data.govt.nz/algorithm-charter/
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: LEG-07
+- name: Public Service AI Framework
+  publisher: GCDO
+  status: Version 2025.
+  nz_status: Recommended (NZ)
+  url: https://standards.digital.govt.nz/nz/generative-ai-guidance-gcdo/public-service-ai-framework/2025/en/
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: LEG-07
+- name: NZGOAL (NZ Government Open Access and Licensing framework)
+  publisher: Stats NZ / data.govt.nz
+  status: Version 2; guidance for licensing government copyright works.
+  nz_status: Recommended (NZ)
+  url: https://www.data.govt.nz/manage-data/policies/nzgoal
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: LEG-01
+- name: The Accessibility Charter
+  publisher: Ministry of Social Development
+  status: Launched 15 Feb 2018; commitment to accessible information and alternative formats.
+  nz_status: Recommended (NZ)
+  url: https://www.msd.govt.nz/about-msd-and-our-work/work-programmes/accessibility/accessibility-charter/the-charter.html
+  link_check: Fetched - live
+  licence: Check terms on site.
+  used_in: CON-07
+- name: Risk assessment for public cloud services
+  publisher: GCDO (Government Digital Delivery Agency)
+  status: Current guidance, including the risk discovery tool and jurisdictional risk guidance.
+  nz_status: Recommended (NZ)
+  url: https://www.digital.govt.nz/standards-and-guidance/technology-and-architecture/cloud-services/assess-the-risks
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: SEC-11
+- name: Government domain names
+  publisher: Government Digital Delivery Agency
+  status: Rules and process for .govt.nz domains.
+  nz_status: Recommended (NZ)
+  url: https://www.digital.govt.nz/standards-and-guidance/technology-and-architecture/domain-names
+  link_check: Fetched - live
+  licence: NZ Government content - check the site's copyright page before reusing text.
+  used_in: BRD-05
+- name: Effective complaint handling
+  publisher: Office of the Ombudsman
+  status: Guide for agencies.
+  nz_status: Recommended (NZ)
+  url: https://www.ombudsman.parliament.nz/resources/effective-complaint-handling
+  link_check: Fetched - live
+  licence: Check terms on site.
+  used_in: SUP-07
+- name: Government procurement framework (incl. Government Procurement Rules)
+  publisher: New Zealand Government Procurement (MBIE)
+  status: Current framework.
+  nz_status: Context
+  url: https://www.procurement.govt.nz/government-procurement-framework/
+  link_check: Fetched - live
+  licence: Check terms on site.
+  used_in: OPS-06
+- name: 10 Usability Heuristics for User Interface Design
+  publisher: Nielsen Norman Group
+  status: First published 1994; updated 2020; last reviewed 30 Jan 2024.
+  nz_status: Good practice
+  url: https://www.nngroup.com/articles/ten-usability-heuristics/
+  link_check: Fetched - live
+  licence: Copyright NN/g. Heuristic names and concepts reused; descriptions are original.
+  used_in: UXD-04, UXD-05, UXD-06, UXD-07, BRD-04, SUP-02
+- name: 'ISO 9241-11:2018 Usability: Definitions and concepts'
+  publisher: ISO
+  status: Current (confirmed 2023).
+  nz_status: Good practice
+  url: https://www.iso.org/standard/63500.html
+  link_check: Fetched - live
+  licence: Paid standard - reference only.
+  used_in: UXD-03
+- name: System Usability Scale (SUS) - Brooke, 1996
+  publisher: John Brooke
+  status: Widely used 10-item usability questionnaire.
+  nz_status: Good practice
+  url: https://verdi.cs.ucl.ac.uk/constructDB/publications/brooke-susa-1996.html
+  link_check: Fetched - live
+  licence: Widely used without charge with attribution; confirm terms against the original publication before embedding the questionnaire in the app.
+  used_in: MSR-03
+- name: Web Vitals (Core Web Vitals)
+  publisher: Google (web.dev)
+  status: 'Current: LCP, INP, CLS.'
+  nz_status: Good practice
+  url: https://web.dev/articles/vitals
+  link_check: Fetched - live
+  licence: Content CC BY 4.0; code samples Apache 2.0.
+  used_in: UXD-10
+- name: HTTP Observatory
+  publisher: Mozilla (MDN)
+  status: Free online security header scanner.
+  nz_status: Good practice
+  url: https://developer.mozilla.org/en-US/observatory
+  link_check: Fetched - live
+  licence: Free tool - evidence source.
+  used_in: SEC-04
+- name: SSL Server Test
+  publisher: Qualys SSL Labs
+  status: Free online TLS configuration scanner.
+  nz_status: Good practice
+  url: https://www.ssllabs.com/ssltest/
+  link_check: Fetched - live
+  licence: Free tool - evidence source.
+  used_in: SEC-04
+- name: axe-core
+  publisher: Deque Systems
+  status: Open-source accessibility testing engine.
+  nz_status: Good practice
+  url: https://github.com/dequelabs/axe-core
+  link_check: Fetched - live
+  licence: Open source under MPL-2.0.
+  used_in: ACC-14
+- name: Site Reliability Engineering books
+  publisher: Google
+  status: Several titles readable online.
+  nz_status: Good practice
+  url: https://sre.google/books/
+  link_check: Fetched - live
+  licence: Concepts only.
+  used_in: OPS-03, OPS-07
+- name: DORA metrics
+  publisher: DORA (Google Cloud)
+  status: Five software delivery performance metrics.
+  nz_status: Good practice
+  url: https://dora.dev/guides/dora-metrics/
+  link_check: Fetched - live
+  licence: Concepts only.
+  used_in: OPS-10
+- name: ITIL
+  publisher: PeopleCert
+  status: ITIL 4 and ITIL (Version 5) certifications current.
+  nz_status: Good practice
+  url: https://www.peoplecert.org/browse-certifications/it-governance-and-service-management/ITIL-1
+  link_check: Fetched - live
+  licence: Proprietary - reference concepts only.
+  used_in: OPS-04, SUP-04
+- name: Planning Act and Natural Environment Act (overview)
+  publisher: NZ Parliament (overview by Buddle Findlay)
+  status: Both Acts received Royal assent and came into force on 30 Sep 2026, with transitional provisions from the Resource Management Act 1991. Official text not yet located on legislation.govt.nz at 24 Oct 2026 - replace this link with the legislation.govt.nz pages when available.
+  nz_status: Mandatory (NZ) where relevant to the service
+  url: https://www.buddlefindlay.com/insights/resource-management-reform-an-overview-of-the-planning-act-and-natural-environment-act/
+  link_check: Fetched - live
+  licence: Law firm commentary - link only; cite the Acts themselves.
+  used_in: LEG-09
+- name: Planning and environment Acts become law (news)
+  publisher: Inside Government NZ
+  status: News report dated 30 Sep 2026 confirming Royal assent; transitional consenting arrangements and phased implementation through 2027-2030.
+  nz_status: Context
+  url: https://insidegovernment.co.nz/?p=37222
+  link_check: Fetched - live
+  licence: News - link only.
+  used_in: LEG-09

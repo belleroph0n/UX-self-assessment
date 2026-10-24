@@ -1,0 +1,20 @@
+# Service profile questions, asked before the assessment starts.
+# Each criterion has an 'applies_to' value. Criteria whose value is not 'all' are only
+# asked when the matching profile question is answered 'yes'; otherwise they're
+# recorded as N/A automatically (and excluded from scoring).
+
+characteristics:
+- id: public-facing
+  question: Is the service used by members of the public or people outside your organisation?
+  hint: Answer no if only your organisation's staff and contractors use it.
+- id: transactional
+  question: Do users complete transactions in the service, such as submitting forms, applications or payments?
+  hint: Answer no if the service only provides information.
+- id: authenticated
+  question: Do users sign in to use the service?
+- id: uses-media
+  question: Does the service include video or audio content?
+- id: uses-cms
+  question: Is the service's content managed through a content management system (CMS)?
+- id: uses-ai
+  question: Does the service use algorithms or AI that affect people, such as decisions, recommendations or eligibility?
