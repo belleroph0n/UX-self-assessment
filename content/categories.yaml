@@ -1,0 +1,44 @@
+# Assessment categories. 'points' is each category's share of the 100-point UX health score
+# and must total 100. 'description' is shown to assessors as 'what good looks like'.
+
+categories:
+- id: ACC
+  name: Accessibility
+  points: 20
+  description: Disabled people, including blind and low vision users, can perceive, operate and complete the service.
+- id: UXD
+  name: Usability and design
+  points: 15
+  description: The service is easy to use, works across devices and is designed around user needs.
+- id: CON
+  name: Content and tone of voice
+  points: 8
+  description: Content is plain, accurate, consistent and written in the organisation's voice.
+- id: BRD
+  name: Brand and visual consistency
+  points: 6
+  description: The service looks and feels consistent with the organisation and NZ Government identity.
+- id: SEC
+  name: Security and privacy
+  points: 14
+  description: The service protects users and their information and meets NZ security and privacy obligations.
+- id: OPS
+  name: Reliability, observability and service levels
+  points: 13
+  description: The service is available, monitored, and issues are found and fixed quickly.
+- id: SUP
+  name: Support and contact channels
+  points: 8
+  description: People can get help, in the channel that works for them, when they need it.
+- id: LEG
+  name: Legal and regulatory
+  points: 6
+  description: The service meets NZ legal and public sector obligations about access to services and information.
+- id: CMG
+  name: Content management and governance
+  points: 5
+  description: The service and its content have clear ownership, workflows and ongoing funding.
+- id: MSR
+  name: Measurement and continuous improvement
+  points: 5
+  description: Performance and satisfaction are measured and used to improve the service.

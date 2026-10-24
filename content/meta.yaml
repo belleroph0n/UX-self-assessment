@@ -1,0 +1,8 @@
+# Content release details. Bump content_version for every change to the content files
+# and add an entry to CHANGELOG.md.
+
+title: UX Health Check
+content_version: '1.51'
+released: '2026-10-24'
+audience: NZ Government agencies
+licence: CC BY 4.0

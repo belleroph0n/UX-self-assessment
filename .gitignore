@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dist-single/
+src/generated/
+test-results/
+playwright-report/
+lychee/
+.DS_Store

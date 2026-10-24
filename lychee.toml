@@ -1,0 +1,7 @@
+# Link checker settings (https://lychee.cli.rs)
+# Some government sites block automated checkers (403) or rate-limit them (429);
+# those are treated as passing and should be checked by hand at each release.
+accept = ["200..=299", "403", "429"]
+max_retries = 3
+timeout = 30
+user_agent = "Mozilla/5.0 (compatible; ux-health-check link checker)"

@@ -1,0 +1,52 @@
+# Runs on every pull request and every push to main.
+# A pull request can only be merged when all of these checks pass.
+name: Checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    name: Content, tests and accessibility
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+
+      - name: Check the content files
+        run: npm run content
+
+      - name: Type check
+        run: npx tsc --noEmit
+
+      - name: Scoring and import tests
+        run: npx vitest run
+
+      - name: Build the site
+        run: npx vite build
+
+      - name: Install browser for accessibility tests
+        run: npx playwright install --with-deps chromium
+
+      - name: Accessibility and end-to-end tests
+        run: npx playwright test
+
+  links:
+    name: Supporting links still work
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check links in the content files
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml content/
+          fail: true

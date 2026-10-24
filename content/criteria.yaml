@@ -1,0 +1,1469 @@
+# Master list of criteria. Every criterion is one question in the detailed assessment.
+# Criteria with weight 3 also form the simple assessment (the app's default).
+# Field guide: see docs/editing-content.md
+
+criteria:
+- id: ACC-01
+  category: ACC
+  subcategory: Conformance
+  question: Has the service been assessed against WCAG 2.2 Level AA in the last 12 months, including manual testing (not automated tools alone)?
+  evidence: Dated accessibility audit report covering the service's key pages and complete processes, with manual test results.
+  weight: 3
+  critical: true
+  recommendation: Commission or complete a WCAG 2.2 AA assessment that includes manual and assistive technology testing, covering every page in each complete process, and repeat it at least annually or after major change.
+  source: NZ Government Web Accessibility Standard; WCAG 2.2
+  source_version: WAS 1.2 (from 17 Mar 2025); WCAG 2.2 AA
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: NZ Web Accessibility Standard 1.2
+    url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/web-accessibility-standard-1-2
+  review_note: Draft Digital Accessibility Standard (DAS), based on EN 301 549, expected to replace WAS in early 2027. Review wording when DAS is final.
+- id: ACC-02
+  category: ACC
+  subcategory: Assistive technology
+  question: Have the service's key tasks been tested end to end with screen readers on both desktop and mobile (for example NVDA or JAWS, VoiceOver, TalkBack)?
+  evidence: Test scripts and results per screen reader/browser combination, dated, with issues logged.
+  weight: 3
+  critical: false
+  recommendation: Test every key task with at least one desktop and one mobile screen reader, ideally including blind and low vision users, and fix issues that stop tasks being completed.
+  source: WCAG 2.2 SC 4.1.2, 1.3.1; W3C WCAG-EM
+  source_version: WCAG 2.2; WCAG-EM 2.0 (Jul 2026)
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: W3C accessibility evaluation methodology
+    url: https://www.w3.org/WAI/test-evaluate/conformance/wcag-em/
+- id: ACC-03
+  category: ACC
+  subcategory: Perceivable
+  question: Do all images, icons, charts and other non-text content have appropriate text alternatives (or are marked as decorative)?
+  evidence: Audit findings for SC 1.1.1; content guidance requiring alt text; CMS alt text field usage.
+  weight: 2
+  critical: false
+  recommendation: Provide meaningful text alternatives for informative images, icons and charts, mark decorative images so screen readers skip them, and provide data tables for complex charts.
+  source: WCAG 2.2 SC 1.1.1
+  source_version: WCAG 2.2 A
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-04
+  category: ACC
+  subcategory: Perceivable
+  question: Is page structure conveyed programmatically - meaningful page titles, headings, landmarks, lists, table headers and form labels?
+  evidence: Audit findings for SC 1.3.1, 2.4.2, 2.4.6; screen reader heading/landmark navigation test.
+  weight: 2
+  critical: false
+  recommendation: Use semantic HTML (headings, landmarks, lists, labelled controls) and unique, descriptive page titles so screen reader users can understand and navigate the structure.
+  source: WCAG 2.2 SC 1.3.1, 2.4.2, 2.4.6
+  source_version: WCAG 2.2 A/AA
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-05
+  category: ACC
+  subcategory: Operable
+  question: Can every function be used with a keyboard alone, with no keyboard traps, a logical focus order, and a visible focus indicator that is not hidden by other content?
+  evidence: Keyboard-only test of each key task; audit findings for SC 2.1.1, 2.1.2, 2.4.3, 2.4.7, 2.4.11.
+  weight: 3
+  critical: true
+  recommendation: Make all functionality keyboard operable, remove keyboard traps, keep focus order logical and ensure the focus indicator is always visible and not obscured by sticky headers, banners or overlays.
+  source: WCAG 2.2 SC 2.1.1, 2.1.2, 2.4.3, 2.4.7, 2.4.11
+  source_version: WCAG 2.2 A/AA
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-06
+  category: ACC
+  subcategory: Low vision
+  question: Do text, icons, form borders and focus indicators meet WCAG contrast ratios (4.5:1 for normal text, 3:1 for large text and non-text elements)?
+  evidence: Contrast check results for brand palette and UI components; audit findings for SC 1.4.3 and 1.4.11.
+  weight: 2
+  critical: false
+  recommendation: Check all text and interface components against WCAG contrast ratios and adjust colour tokens in the design system so every combination in use passes.
+  source: WCAG 2.2 SC 1.4.3, 1.4.11
+  source_version: WCAG 2.2 AA
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-07
+  category: ACC
+  subcategory: Low vision
+  question: Does content remain usable when text is resized to 200% and when zoomed to 400% (320 CSS pixels wide) without loss of content or horizontal scrolling?
+  evidence: Zoom and reflow test results on key pages; audit findings for SC 1.4.4, 1.4.10, 1.4.12.
+  weight: 2
+  critical: false
+  recommendation: Use responsive layouts and relative units so content reflows at 400% zoom and text spacing can be increased without content being cut off or overlapping.
+  source: WCAG 2.2 SC 1.4.4, 1.4.10, 1.4.12
+  source_version: WCAG 2.2 AA
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-08
+  category: ACC
+  subcategory: Perceivable
+  question: Is information never conveyed by colour alone (for example error states, required fields, chart series, status indicators)?
+  evidence: Audit findings for SC 1.4.1; review of status and error patterns.
+  weight: 1
+  critical: false
+  recommendation: Pair colour with text, icons or patterns so information is still available to people who cannot perceive colour differences.
+  source: WCAG 2.2 SC 1.4.1
+  source_version: WCAG 2.2 A
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-09
+  category: ACC
+  subcategory: Forms
+  question: Do forms have visible labels and instructions, identify errors in text, suggest corrections, and announce status messages to assistive technology?
+  evidence: Audit findings for SC 3.3.1, 3.3.2, 3.3.3, 4.1.3; screen reader test of form errors.
+  weight: 2
+  critical: false
+  recommendation: Give every field a visible label and clear instructions, describe errors in text next to the field and in a summary, suggest how to fix them, and announce status changes to screen readers.
+  source: WCAG 2.2 SC 3.3.1, 3.3.2, 3.3.3, 4.1.3
+  source_version: WCAG 2.2 A/AA
+  nz_status: mandatory
+  applies_to: transactional
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-10
+  category: ACC
+  subcategory: Forms
+  question: Does sign-in avoid cognitive function tests (such as remembering or transcribing codes without paste or password manager support), and does the service avoid asking for the same information twice?
+  evidence: Audit findings for SC 3.3.7 and 3.3.8 (new in WCAG 2.2); sign-in flow review.
+  weight: 2
+  critical: false
+  recommendation: Allow paste and password managers, offer alternatives to puzzles or memory tests at sign-in, and auto-fill or let users select information they have already given.
+  source: WCAG 2.2 SC 3.3.7, 3.3.8
+  source_version: WCAG 2.2 A/AA
+  nz_status: mandatory
+  applies_to: authenticated
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-11
+  category: ACC
+  subcategory: Mobile
+  question: Are touch targets large enough (at least 24 by 24 CSS pixels or adequately spaced), and can actions that use dragging or multi-point gestures also be done with a single tap?
+  evidence: Audit findings for SC 2.5.7, 2.5.8; mobile device testing.
+  weight: 1
+  critical: false
+  recommendation: Size and space interactive targets to at least 24 by 24 CSS pixels and provide single-pointer alternatives for drag and gesture interactions.
+  source: WCAG 2.2 SC 2.5.7, 2.5.8
+  source_version: WCAG 2.2 AA
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: ACC-12
+  category: ACC
+  subcategory: Media
+  question: Do videos and audio have captions, transcripts and (where needed) audio description?
+  evidence: Media inventory showing captions, transcripts and audio description status.
+  weight: 1
+  critical: false
+  recommendation: Provide captions and transcripts for all prerecorded media and audio description where visual information is not otherwise conveyed, noting the specific exceptions in the Web Accessibility Standard.
+  source: WCAG 2.2 SC 1.2.1, 1.2.2, 1.2.5; WAS 1.2 exceptions
+  source_version: WCAG 2.2 A/AA; WAS 1.2
+  nz_status: mandatory
+  applies_to: uses-media
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+  review_note: WAS 1.2 modifies some media requirements (e.g. live captions, audio description). Check current exceptions.
+- id: ACC-13
+  category: ACC
+  subcategory: Documents
+  question: Are PDFs, Word and other documents published by the service accessible, or accompanied by an accessible HTML alternative?
+  evidence: Document inventory with accessibility status; publishing guidance.
+  weight: 2
+  critical: false
+  recommendation: Publish key content as HTML first; where documents are needed, make them accessible (tagged, structured, with alt text) or provide an accessible alternative.
+  source: NZ Government Web Accessibility Guide (accessibility-supported technologies); draft DAS
+  source_version: WAS 1.2; DAS draft (Jul 2026)
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: NZ Digital Accessibility Standard (draft)
+    url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/digital-accessibility-standard
+  review_note: Draft DAS extends scope beyond websites to documents, emails and mobile apps.
+- id: ACC-14
+  category: ACC
+  subcategory: Process
+  question: Is automated accessibility testing built into the design, build and release process (for example axe-core, Pa11y or CWAC) so detectable errors are caught before release?
+  evidence: CI/CD configuration or test reports; CWAC scan results for the service.
+  weight: 2
+  critical: false
+  recommendation: Add automated accessibility checks to the build pipeline and content publishing workflow, and treat new automatically detectable errors as release blockers.
+  source: GCDO guidance on CWAC and automated testing
+  source_version: CWAC (open source)
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: CWAC accessibility checker (GitHub)
+    url: https://github.com/GOVTNZ/cwac
+  review_note: Automated tests detect only a subset of WCAG issues; never use as the sole evidence for ACC-01. CWAC is open source (GPL-3.0).
+- id: ACC-15
+  category: ACC
+  subcategory: Reporting
+  question: Is there a published accessibility statement giving conformance status, known issues, alternatives and how to report a problem, and a risk assessment and management plan for any non-conformance?
+  evidence: Accessibility statement URL; risk assessment and management plan.
+  weight: 2
+  critical: false
+  recommendation: Publish and maintain an accessibility statement, and document a risk assessment and management plan for any areas that do not yet conform, with dates for fixes.
+  source: Web Accessibility Standard 1.2 s4 (assessment and reporting, incl. risk assessment and management plan)
+  source_version: WAS 1.2
+  nz_status: mandatory
+  applies_to: public-facing
+  link:
+    label: NZ Web Accessibility Standard 1.2
+    url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/web-accessibility-standard-1-2
+- id: ACC-16
+  category: ACC
+  subcategory: Inclusion
+  question: Have disabled people (including blind and low vision users) been included in user research and usability testing for this service?
+  evidence: Research plans and participant summaries showing disabled participants and assistive technology used.
+  weight: 2
+  critical: false
+  recommendation: Recruit disabled people, including assistive technology users, into research and usability testing at each major stage of design and change.
+  source: Digital Service Design Standard; AU Digital Service Standard 2.0 criterion 3 (leave no one behind)
+  source_version: DSDS 2018 (refresh underway); AU DSS 2.0
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: 'GOV.UK: making services more inclusive'
+    url: https://www.gov.uk/service-manual/design/making-your-service-more-inclusive
+- id: ACC-17
+  category: ACC
+  subcategory: Maturity
+  question: Does the organisation have accessibility roles, training, and accessibility requirements in procurement and vendor contracts that apply to this service?
+  evidence: Role descriptions, training records, contract clauses requiring WCAG 2.2 AA.
+  weight: 1
+  critical: false
+  recommendation: Assign accessibility accountability, train designers, developers and content authors, and include accessibility conformance requirements and acceptance testing in vendor contracts.
+  source: W3C Accessibility Maturity Model
+  source_version: W3C Group Note (Nov 2025)
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: W3C Accessibility Maturity Model
+    url: https://www.w3.org/TR/maturity-model/
+- id: UXD-01
+  category: UXD
+  subcategory: Responsive design
+  question: Is the service responsive or adaptive, so content and controls scale and reflow correctly across phone, tablet and desktop screen sizes and orientations?
+  evidence: Device/browser test matrix results; analytics showing device mix.
+  weight: 3
+  critical: true
+  recommendation: Ensure the application is adaptive, so content and objects scale to the user's screen size and orientation, and test key tasks on the devices your users actually use.
+  source: OMB M-23-22 (design pillar); WCAG 2.2 SC 1.3.4, 1.4.10
+  source_version: M-23-22 (2023); WCAG 2.2
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'GOV.UK: services that work on mobile'
+    url: https://www.gov.uk/service-manual/technology/working-with-mobile-technology
+- id: UXD-02
+  category: UXD
+  subcategory: User research
+  question: Has research with real users of this service (not proxies) informed its design or changes in the last 12 months?
+  evidence: Research reports, insights repository, decisions traced to research.
+  weight: 3
+  critical: false
+  recommendation: Run regular user research with people who use the service, including those who struggle, and record how findings change the service.
+  source: GOV.UK Service Standard point 1; AU DSS 2.0 criterion 2; Digital Service Design Standard
+  source_version: GOV.UK SS (2019); AU DSS 2.0
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: 'GOV.UK: understand users and needs'
+    url: https://www.gov.uk/service-manual/service-standard/point-1-understand-user-needs
+- id: UXD-03
+  category: UXD
+  subcategory: Usability testing
+  question: Have the service's key tasks been usability tested with representative users, with task success and problem areas measured?
+  evidence: Usability test reports with task completion rates and severity-rated issues.
+  weight: 2
+  critical: false
+  recommendation: Usability test the most important tasks with representative users at least annually and after significant change, and fix high-severity issues first.
+  source: GOV.UK Service Standard point 4; ISO 9241-11
+  source_version: GOV.UK SS; ISO 9241-11:2018
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'GOV.UK: make the service simple'
+    url: https://www.gov.uk/service-manual/service-standard/point-4-make-the-service-simple-to-use
+- id: UXD-04
+  category: UXD
+  subcategory: Heuristics
+  question: Has the service been reviewed against recognised usability heuristics (for example Nielsen's 10 usability heuristics) in the last 12 months?
+  evidence: Heuristic review findings with severity ratings.
+  weight: 1
+  critical: false
+  recommendation: Complete a heuristic review against Nielsen's 10 usability heuristics and add findings to the improvement backlog.
+  source: Nielsen's 10 usability heuristics (NN/g)
+  source_version: 1994, updated 2020
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'NN/g: running a heuristic evaluation'
+    url: https://www.nngroup.com/articles/how-to-conduct-a-heuristic-evaluation/
+  review_note: Reuse heuristic names and concepts; write your own descriptions rather than copying NN/g text.
+- id: UXD-05
+  category: UXD
+  subcategory: Feedback
+  question: Does the service always tell users what is happening - loading, saving, submitting - and give clear confirmation of what has been done and what happens next?
+  evidence: Screens for loading, success and confirmation states; confirmation messages/emails.
+  weight: 2
+  critical: false
+  recommendation: Show clear progress and loading states, and give a confirmation page and message with a reference number and what happens next for every completed transaction.
+  source: Nielsen heuristic 1 (visibility of system status)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'NN/g: 10 usability heuristics'
+    url: https://www.nngroup.com/articles/ten-usability-heuristics/
+- id: UXD-06
+  category: UXD
+  subcategory: Findability
+  question: Can users find what they need - clear navigation, labels in users' language, and site search that returns relevant results?
+  evidence: Tree test or findability results; search analytics (top queries, zero-result searches).
+  weight: 2
+  critical: false
+  recommendation: Structure navigation around user tasks, test it with users, and monitor search queries to improve labels and results.
+  source: OMB M-23-22 (search pillar); Nielsen heuristic 2
+  source_version: M-23-22
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'NN/g: 10 usability heuristics'
+    url: https://www.nngroup.com/articles/ten-usability-heuristics/
+- id: UXD-07
+  category: UXD
+  subcategory: Errors
+  question: Does the service prevent errors and help users recover - confirming destructive actions, saving progress, and explaining errors in plain language?
+  evidence: Error message inventory; save-and-return feature; confirmation patterns.
+  weight: 2
+  critical: false
+  recommendation: Prevent common errors with good defaults and validation, let users save and return to long forms, and write error messages that say what went wrong and how to fix it.
+  source: Nielsen heuristics 3, 5 and 9
+  source_version: ''
+  nz_status: good-practice
+  applies_to: transactional
+  link:
+    label: 'NN/g: 10 usability heuristics'
+    url: https://www.nngroup.com/articles/ten-usability-heuristics/
+- id: UXD-08
+  category: UXD
+  subcategory: Design system
+  question: Is the service built using an established design system or pattern library (organisation or shared government) rather than one-off components?
+  evidence: Design system name and version; component usage audit.
+  weight: 2
+  critical: false
+  recommendation: Use and contribute to a shared design system so components are tested, accessible and consistent across the organisation's services.
+  source: GOV.UK Service Standard point 13; AU DSS 2.0 criterion 6 (don't reinvent the wheel)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'GOV.UK: reuse common components, patterns'
+    url: https://www.gov.uk/service-manual/service-standard/point-13-use-common-standards-components-patterns
+- id: UXD-09
+  category: UXD
+  subcategory: Whole journey
+  question: Has the end-to-end user journey been mapped, including offline steps, other agencies and hand-offs, and are pain points across channels addressed?
+  evidence: Journey or service blueprint; list of cross-channel issues and actions.
+  weight: 2
+  critical: false
+  recommendation: Map the full journey across channels and organisations and design the digital service to work smoothly with the steps before and after it.
+  source: GOV.UK Service Standard points 2 and 3; AU DSS 2.0 criterion 4 (connect services)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'GOV.UK: solve a whole problem'
+    url: https://www.gov.uk/service-manual/service-standard/point-2-solve-a-whole-problem
+- id: UXD-10
+  category: UXD
+  subcategory: Performance
+  question: Do pages load and respond quickly on typical NZ mobile connections and devices, with front-end performance (for example Core Web Vitals) monitored?
+  evidence: Lighthouse or real-user monitoring results for key pages.
+  weight: 2
+  critical: false
+  recommendation: Set performance budgets, monitor real-user performance (for example Core Web Vitals) and optimise key pages for mobile devices and slower connections.
+  source: Google Core Web Vitals; OMB M-23-22
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'Google: Core Web Vitals'
+    url: https://web.dev/articles/vitals
+- id: UXD-11
+  category: UXD
+  subcategory: Compatibility
+  question: Is there a defined browser, device and assistive technology support policy, and is the service tested against it before release?
+  evidence: Support policy; release test evidence.
+  weight: 1
+  critical: false
+  recommendation: Define which browsers, devices and assistive technologies are supported based on user data, and test against that list before each release.
+  source: GOV.UK Service Manual (designing for different browsers and devices)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'GOV.UK: browser and device testing'
+    url: https://www.gov.uk/service-manual/technology/designing-for-different-browsers-and-devices
+- id: UXD-12
+  category: UXD
+  subcategory: Data minimisation
+  question: Does the service only ask for information it needs, and reuse information the agency already holds where lawful (so users don't repeat themselves)?
+  evidence: Field-by-field justification; data reuse arrangements.
+  weight: 1
+  critical: false
+  recommendation: Remove questions that aren't needed, explain why information is asked for, and reuse information already held where the law allows.
+  source: Privacy Act 2020 IPP 1; AU DSS 2.0 criterion 4
+  source_version: Privacy Act 2020
+  nz_status: recommended
+  applies_to: transactional
+  link:
+    label: Privacy Act 2020
+    url: https://www.legislation.govt.nz/act/public/2020/31/en/latest/
+- id: CON-01
+  category: CON
+  subcategory: Plain language
+  question: Is content written in plain language appropriate to the intended audience, and has it been checked (for example readability testing or user testing)?
+  evidence: Content review results; readability scores; plain language checks.
+  weight: 3
+  critical: false
+  recommendation: Write and review all public content in plain language, test it with users, and follow the agency's Plain Language Act processes.
+  source: Plain Language Act 2022
+  source_version: Plain Language Act 2022
+  nz_status: mandatory
+  applies_to: public-facing
+  link:
+    label: Plain Language Act 2022
+    url: https://www.legislation.govt.nz/act/public/2022/0054/latest/whole.html
+  review_note: Applies to public service agencies and Crown agents. A Plain Language Act Repeal Bill was introduced in 2025 (first reading 1 Apr 2025) and had not been enacted at 24 Oct 2026. If the Act is repealed, change NZ status to Good practice and keep the criterion.
+- id: CON-02
+  category: CON
+  subcategory: Tone of voice
+  question: Does the organisation have tone of voice guidelines, and does the service's content follow them?
+  evidence: Tone of voice guidelines; content review against them.
+  weight: 2
+  critical: false
+  recommendation: Apply the organisation's tone of voice guidelines to all service content, including error messages, emails and letters, and review content against them.
+  source: Organisation brand and tone of voice guidelines
+  source_version: Organisation-specific
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Use your organisation's tone of voice
+    url: ''
+  review_note: Organisation supplies its own guideline reference.
+- id: CON-03
+  category: CON
+  subcategory: Style
+  question: Is content consistent with a content style guide (NZ English, terminology, dates, numbers, capitalisation)?
+  evidence: Style guide reference; content audit results.
+  weight: 1
+  critical: false
+  recommendation: Adopt a content style guide (organisation or NZ Government) and apply it consistently, including a glossary of service terms.
+  source: Organisation style guide; NZ Government content guidance (Digital.govt.nz)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Use your organisation's style guide
+    url: ''
+- id: CON-04
+  category: CON
+  subcategory: Accuracy
+  question: Is service content authoritative and current, with no duplicate or conflicting information across the agency's channels?
+  evidence: Content inventory; duplicate content review.
+  weight: 2
+  critical: false
+  recommendation: Keep one authoritative source for each piece of service information, remove or redirect duplicates, and check consistency with call centre scripts and printed material.
+  source: OMB M-23-22 (content pillar)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: US digital-first experience memo
+    url: https://www.whitehouse.gov/wp-content/uploads/2023/09/M-23-22-Delivering-a-Digital-First-Public-Experience.pdf
+- id: CON-05
+  category: CON
+  subcategory: Links and labels
+  question: Are buttons, links and labels clear and specific (no 'click here'), and has microcopy been tested with users?
+  evidence: Audit findings for SC 2.4.4; microcopy test results.
+  weight: 1
+  critical: false
+  recommendation: Write descriptive link text and button labels that make sense out of context, and test key microcopy with users.
+  source: WCAG 2.2 SC 2.4.4, 2.4.6
+  source_version: WCAG 2.2 A/AA
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: CON-06
+  category: CON
+  subcategory: Te reo Māori
+  question: Has the service considered te reo Māori - correct use and display of macrons, bilingual names and content where appropriate?
+  evidence: Te reo Māori approach; macron rendering test; reviewed translations.
+  weight: 1
+  critical: false
+  recommendation: Agree a te reo Māori approach for the service, ensure macrons display and are searchable, and have te reo content reviewed by a qualified speaker.
+  source: Te Ture mō Te Reo Māori 2016 (Māori Language Act); Digital Service Design Standard
+  source_version: ''
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: Māori Language Act 2016
+    url: https://www.legislation.govt.nz/act/public/2016/0017/latest/DLM6174566.html
+- id: CON-07
+  category: CON
+  subcategory: Alternative formats
+  question: Is key service information available in alternative formats where needed (for example Easy Read, NZ Sign Language, large print, audio, Braille)?
+  evidence: List of alternative formats; process for requesting them.
+  weight: 1
+  critical: false
+  recommendation: Provide key information in alternative formats and offer a simple way to request others.
+  source: Accessibility Charter (MSD); draft Digital Accessibility Standard
+  source_version: DAS draft (Jul 2026)
+  nz_status: recommended
+  applies_to: public-facing
+  link:
+    label: MSD Accessibility Charter
+    url: https://www.msd.govt.nz/about-msd-and-our-work/work-programmes/accessibility/accessibility-charter/the-charter.html
+- id: CON-08
+  category: CON
+  subcategory: Languages
+  question: Have the language needs of the service's users been identified, with translated content provided where needed?
+  evidence: User language data; translated content inventory.
+  weight: 1
+  critical: false
+  recommendation: Use research and demographic data to identify language needs and translate key content, using professional translators.
+  source: Digital Service Design Standard
+  source_version: ''
+  nz_status: good-practice
+  applies_to: public-facing
+  link:
+    label: NZ Digital Service Design principles
+    url: https://www.digital.govt.nz/standards-and-guidance/digital-service-design-standard/principles
+- id: BRD-01
+  category: BRD
+  subcategory: Brand guidelines
+  question: Does the service apply the organisation's brand guidelines - logos, font types, colour palette, iconography and styling?
+  evidence: Brand guideline reference; design review against guidelines.
+  weight: 3
+  critical: false
+  recommendation: Apply the organisation's brand guidelines, including font types, colour palette and styling, to minimise experience inconsistency across applications.
+  source: Organisation brand guidelines; OMB M-23-22 (branding pillar)
+  source_version: Organisation-specific
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Use your organisation's brand guidelines
+    url: ''
+- id: BRD-02
+  category: BRD
+  subcategory: Government identity
+  question: Does the website's home page clearly identify it as a NZ Government site and link to Govt.nz using the recommended NZ Government logo markup?
+  evidence: Screenshot of home page; markup check.
+  weight: 2
+  critical: false
+  recommendation: Add the NZ Government identity link to Govt.nz on the home page using the recommended accessible logo markup.
+  source: Web Usability Standard 1.4 s2.2 (Government identity); NZ government logo markup guidance
+  source_version: WUS 1.4 (from 17 Mar 2025)
+  nz_status: mandatory
+  applies_to: public-facing
+  link:
+    label: NZ government logo markup guidance
+    url: https://www.digital.govt.nz/standards-and-guidance/design-and-ux/usability/nz-government-logo-markup
+  review_note: Web Usability Standard requirements are expected to become guidance within the updated Digital Service Design Standard.
+- id: BRD-03
+  category: BRD
+  subcategory: Accessible brand
+  question: Has the brand colour palette and typography been checked for accessibility (contrast, legibility at small sizes)?
+  evidence: Contrast matrix for brand colours; typography test.
+  weight: 2
+  critical: false
+  recommendation: Test the brand palette and type scale against WCAG and publish approved accessible colour combinations in the design system.
+  source: WCAG 2.2 SC 1.4.3, 1.4.11
+  source_version: WCAG 2.2 AA
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: WCAG 2.2 quick reference
+    url: https://www.w3.org/WAI/WCAG22/quickref/
+- id: BRD-04
+  category: BRD
+  subcategory: Consistency
+  question: Is the look, feel and interaction behaviour consistent with the organisation's other digital services (shared components, design tokens, patterns)?
+  evidence: Comparison with other agency services; shared design token usage.
+  weight: 2
+  critical: false
+  recommendation: Use shared design tokens and components across the organisation's applications so users get a consistent experience.
+  source: Nielsen heuristic 4 (consistency and standards); OMB M-23-22
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'NN/g: 10 usability heuristics'
+    url: https://www.nngroup.com/articles/ten-usability-heuristics/
+- id: BRD-05
+  category: BRD
+  subcategory: Trust
+  question: Is the service hosted on a .govt.nz domain (or another approved domain) that clearly identifies the agency, so users can trust it is genuine?
+  evidence: Domain name and approval.
+  weight: 2
+  critical: false
+  recommendation: Host the service on a .govt.nz or other approved government domain and avoid third-party domains that could be mistaken for scams.
+  source: Government domain names guidance (digital.govt.nz)
+  source_version: ''
+  nz_status: recommended
+  applies_to: public-facing
+  link:
+    label: NZ government domain names guidance
+    url: https://www.digital.govt.nz/standards-and-guidance/technology-and-architecture/domain-names
+- id: BRD-06
+  category: BRD
+  subcategory: Machinery of government
+  question: Where the organisation has been renamed, merged or restructured, have legacy names, logos and URLs been updated or redirected?
+  evidence: Inventory of legacy brand references; redirect map.
+  weight: 1
+  critical: false
+  recommendation: Update legacy names, logos and contact details, and redirect old URLs so users are not confused after machinery-of-government changes.
+  source: Good practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: NZ government domain names guidance
+    url: https://www.digital.govt.nz/standards-and-guidance/technology-and-architecture/domain-names
+- id: SEC-01
+  category: SEC
+  subcategory: Assurance
+  question: Has the service completed a security risk assessment and certification and accreditation (C&A) in line with the NZISM, and is it reviewed after significant change?
+  evidence: C&A documentation; risk register; accreditation decision.
+  weight: 3
+  critical: true
+  recommendation: Complete a security risk assessment and certification and accreditation before go-live, and refresh it after significant change or on a set cycle.
+  source: NZ Information Security Manual (NZISM); Protective Security Requirements
+  source_version: NZISM (v3.9 released; check latest updates); PSR
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: NZ Information Security Manual
+    url: https://www.ncsc.govt.nz/nzism/
+  review_note: Check current NZISM version and your organisation's PSR obligations.
+- id: SEC-02
+  category: SEC
+  subcategory: Application security
+  question: Has the application been verified against the OWASP Application Security Verification Standard at a level appropriate to its risk (Level 1 minimum, Level 2 if it handles personal information)?
+  evidence: ASVS checklist results with level stated.
+  weight: 3
+  critical: false
+  recommendation: Verify the application against OWASP ASVS 5.0 at the appropriate level and track gaps to remediation.
+  source: OWASP ASVS 5.0.0 (chapters V1-V17, at the level chosen)
+  source_version: ASVS 5.0.0 (May 2025)
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: OWASP ASVS project page
+    url: https://owasp.org/projects/asvs
+  review_note: OWASP ASVS is referenced by chapter ID only. No ASVS requirement text is reproduced (ASVS is CC BY-SA 4.0). In the app, cite requirement IDs in the form v5.0.0-<chapter>.<section>.<requirement>.
+- id: SEC-03
+  category: SEC
+  subcategory: Testing
+  question: Has an independent penetration test been completed in the last 12 months or since the last major change, with findings remediated?
+  evidence: Pen test report; remediation tracker.
+  weight: 2
+  critical: false
+  recommendation: Commission independent penetration testing annually and after major change, and remediate critical and high findings before release.
+  source: NZISM
+  source_version: ''
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: NZ Information Security Manual
+    url: https://www.ncsc.govt.nz/nzism/
+- id: SEC-04
+  category: SEC
+  subcategory: Transport security
+  question: Is the service served only over HTTPS with modern TLS, HSTS and appropriate security headers (for example Content Security Policy)?
+  evidence: MDN HTTP Observatory and SSL Labs results.
+  weight: 2
+  critical: false
+  recommendation: Enforce HTTPS with modern TLS, enable HSTS and configure security headers, checking regularly with free scanners such as MDN HTTP Observatory and SSL Labs.
+  source: NZISM; OWASP ASVS 5.0.0 V12 (Secure Communication) and V3 (Web Frontend Security)
+  source_version: ASVS 5.0.0
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: MDN HTTP Observatory scanner
+    url: https://developer.mozilla.org/en-US/observatory
+  review_note: OWASP ASVS is referenced by chapter ID only. No ASVS requirement text is reproduced (ASVS is CC BY-SA 4.0). In the app, cite requirement IDs in the form v5.0.0-<chapter>.<section>.<requirement>.
+- id: SEC-05
+  category: SEC
+  subcategory: Identity
+  question: Is user authentication proportionate to risk (for example multi-factor authentication, RealMe or another trusted identity service) and is MFA required for administrators?
+  evidence: Authentication design; identity assurance assessment.
+  weight: 2
+  critical: false
+  recommendation: Match authentication strength to the risk of the transaction, use trusted identity services where appropriate, and require MFA for all administrative access.
+  source: NZ Government Identification Standards; RealMe; NZISM; OWASP ASVS 5.0.0 V6 (Authentication) and V7 (Session Management)
+  source_version: ASVS 5.0.0
+  nz_status: recommended
+  applies_to: authenticated
+  link:
+    label: NZ Identification Standards
+    url: https://www.digital.govt.nz/standards-and-guidance/identity/identification-management/identification-standards
+  review_note: OWASP ASVS is referenced by chapter ID only. No ASVS requirement text is reproduced (ASVS is CC BY-SA 4.0). In the app, cite requirement IDs in the form v5.0.0-<chapter>.<section>.<requirement>.
+- id: SEC-06
+  category: SEC
+  subcategory: Privacy
+  question: Has a privacy impact assessment (PIA) been completed and kept up to date for the service?
+  evidence: PIA document and approval.
+  weight: 2
+  critical: false
+  recommendation: Complete a privacy impact assessment and update it whenever the collection, use or sharing of personal information changes.
+  source: Privacy Act 2020; Office of the Privacy Commissioner PIA guidance
+  source_version: Privacy Act 2020
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: OPC privacy impact assessment guidance
+    url: https://www.privacy.org.nz/responsibilities/privacy-impact-assessments/
+- id: SEC-07
+  category: SEC
+  subcategory: Privacy
+  question: Is a privacy statement available from every page, explaining what personal information is collected, why, who it's shared with, and how to access and correct it?
+  evidence: Privacy statement URL; check it is linked from all pages.
+  weight: 3
+  critical: true
+  recommendation: Publish a clear privacy statement linked from every page that meets Privacy Act 2020 information privacy principle 3 and the Web Usability Standard.
+  source: Privacy Act 2020 IPP 3; Web Usability Standard 1.4 s2.5 (Privacy)
+  source_version: Privacy Act 2020; WUS 1.4
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: NZ Web Usability Standard 1.4
+    url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/web-usability-standard-1-4
+  review_note: 'Weight raised to 3 in v1.10: the privacy statement is a legal obligation and a critical criterion.'
+- id: SEC-08
+  category: SEC
+  subcategory: Privacy
+  question: Is there a tested process for responding to privacy breaches, including notifying the Privacy Commissioner and affected people where required?
+  evidence: Breach response procedure; exercise records.
+  weight: 2
+  critical: false
+  recommendation: Document and exercise a privacy breach response process that meets the notifiable privacy breach requirements of the Privacy Act 2020.
+  source: Privacy Act 2020 Part 6
+  source_version: Privacy Act 2020
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: Privacy Act 2020
+    url: https://www.legislation.govt.nz/act/public/2020/31/en/latest/
+- id: SEC-09
+  category: SEC
+  subcategory: Vulnerabilities
+  question: Are vulnerabilities and dependencies scanned regularly and patched within defined timeframes?
+  evidence: Scan reports; patching SLAs and performance.
+  weight: 2
+  critical: false
+  recommendation: Scan code, dependencies and infrastructure continuously and patch within agreed timeframes based on severity.
+  source: NZISM; OWASP ASVS 5.0.0 V15 (Secure Coding and Architecture)
+  source_version: ASVS 5.0.0
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: OWASP ASVS project page
+    url: https://owasp.org/projects/asvs
+  review_note: OWASP ASVS is referenced by chapter ID only. No ASVS requirement text is reproduced (ASVS is CC BY-SA 4.0). In the app, cite requirement IDs in the form v5.0.0-<chapter>.<section>.<requirement>.
+- id: SEC-10
+  category: SEC
+  subcategory: Security monitoring
+  question: Are security events logged and monitored, with alerts for suspicious activity, without logging sensitive personal information?
+  evidence: Logging standard; security monitoring and alerting configuration.
+  weight: 2
+  critical: false
+  recommendation: Log security-relevant events centrally, alert on suspicious activity, and make sure logs don't contain passwords, tokens or unnecessary personal information.
+  source: OWASP ASVS 5.0.0 V16 (Security Logging and Error Handling); NZISM
+  source_version: ASVS 5.0.0
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: OWASP ASVS project page
+    url: https://owasp.org/projects/asvs
+  review_note: OWASP ASVS is referenced by chapter ID only. No ASVS requirement text is reproduced (ASVS is CC BY-SA 4.0). In the app, cite requirement IDs in the form v5.0.0-<chapter>.<section>.<requirement>.
+- id: SEC-11
+  category: SEC
+  subcategory: Hosting
+  question: Has a risk assessment been completed for the hosting and any cloud services used, including data location and jurisdiction?
+  evidence: Cloud risk assessment; data residency decision.
+  weight: 1
+  critical: false
+  recommendation: Complete a cloud and hosting risk assessment covering data location, jurisdiction and supplier security, and record the decision.
+  source: GCDO public cloud risk assessment guidance (digital.govt.nz); NZISM
+  source_version: ''
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: GCDO cloud risk assessment guidance
+    url: https://www.digital.govt.nz/standards-and-guidance/technology-and-architecture/cloud-services/assess-the-risks
+- id: OPS-01
+  category: OPS
+  subcategory: Service levels
+  question: Are availability and performance targets (service levels or SLOs) defined for the service and agreed with the business owner?
+  evidence: Documented SLA/SLO with targets and measurement method.
+  weight: 3
+  critical: false
+  recommendation: Define and agree availability, response time and support targets that reflect how critical the service is to users, and measure against them.
+  source: AU Digital Performance Standard criterion 2; GOV.UK Service Standard point 14
+  source_version: AU DPS 1.0 (2024)
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'AU guide: measuring service availability'
+    url: https://www.digital.gov.au/policy/digital-experience/digital-performance-standard/dps-criterion-2-measure-availability-your-digital-service
+- id: OPS-02
+  category: OPS
+  subcategory: Monitoring
+  question: Is there proactive monitoring and alerting (for example synthetic checks of key user journeys) so the team learns of problems before users report them?
+  evidence: Monitoring dashboard; alert rules and on-call routing.
+  weight: 3
+  critical: false
+  recommendation: Deploy proactive monitoring and alerting to minimise issue triage and resolution time following service degradation or outage.
+  source: AU Digital Performance Standard criteria 1 and 2
+  source_version: AU DPS 1.0
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'AU guide: service monitoring framework'
+    url: https://www.digital.gov.au/policy/digital-experience/digital-performance-standard/dps-criterion-1-implement-monitoring-framework
+- id: OPS-03
+  category: OPS
+  subcategory: Observability
+  question: Are logs, metrics and traces centralised and correlated so the team can quickly diagnose the cause of an issue?
+  evidence: Observability tooling; example incident diagnosis time.
+  weight: 2
+  critical: false
+  recommendation: Centralise logs, metrics and traces with correlation IDs so issues can be traced across components and suppliers.
+  source: Site reliability engineering practice; OWASP ASVS 5.0.0 V16 (Security Logging and Error Handling)
+  source_version: ASVS 5.0.0
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Google site reliability engineering books
+    url: https://sre.google/books/
+  review_note: OWASP ASVS is referenced by chapter ID only. No ASVS requirement text is reproduced (ASVS is CC BY-SA 4.0). In the app, cite requirement IDs in the form v5.0.0-<chapter>.<section>.<requirement>.
+- id: OPS-04
+  category: OPS
+  subcategory: Incident management
+  question: Is there an incident management process with severity levels, response and resolution targets, escalation paths and named owners?
+  evidence: Incident process; recent incident records against targets.
+  weight: 3
+  critical: true
+  recommendation: Establish an incident management process with severity definitions, response and resolution targets, and clear escalation, and report performance against it.
+  source: ITIL incident management; GOV.UK Service Standard point 14
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'GOV.UK: operate a reliable service'
+    url: https://www.gov.uk/service-manual/service-standard/point-14-operate-a-reliable-service
+- id: OPS-05
+  category: OPS
+  subcategory: Outage communication
+  question: Are users told about outages and planned maintenance (for example a status page, service banner or alternative channel)?
+  evidence: Status page or banner; maintenance notification records.
+  weight: 2
+  critical: false
+  recommendation: Tell users promptly about outages and planned maintenance, with expected recovery times and alternative ways to complete their task.
+  source: GOV.UK Service Standard point 14
+  source_version: ''
+  nz_status: good-practice
+  applies_to: public-facing
+  link:
+    label: 'GOV.UK: operate a reliable service'
+    url: https://www.gov.uk/service-manual/service-standard/point-14-operate-a-reliable-service
+- id: OPS-06
+  category: OPS
+  subcategory: Supplier contracts
+  question: Do hosting, vendor and support contracts include service levels for availability, response, resolution and reporting that match the agreed service targets?
+  evidence: Contract schedules; supplier performance reports.
+  weight: 2
+  critical: false
+  recommendation: Align supplier service levels and reporting with the service's agreed targets, with remedies for under-performance.
+  source: Government Procurement Rules (context); good practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: NZ Government procurement framework
+    url: https://www.procurement.govt.nz/government-procurement-framework/
+- id: OPS-07
+  category: OPS
+  subcategory: Learning
+  question: Are post-incident reviews held for significant incidents, with actions tracked to completion?
+  evidence: Post-incident review records and action tracker.
+  weight: 1
+  critical: false
+  recommendation: Run blameless post-incident reviews for significant incidents and track improvement actions to completion.
+  source: Site reliability engineering practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Google site reliability engineering books
+    url: https://sre.google/books/
+- id: OPS-08
+  category: OPS
+  subcategory: Continuity
+  question: Are recovery time and recovery point objectives defined, and have backup restore and disaster recovery been tested in the last 12 months?
+  evidence: BCP/DR plan; test results.
+  weight: 2
+  critical: false
+  recommendation: Define RTO and RPO based on user impact and test restore and disaster recovery at least annually.
+  source: NZISM; business continuity good practice
+  source_version: ''
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: NZ Information Security Manual
+    url: https://www.ncsc.govt.nz/nzism/
+- id: OPS-09
+  category: OPS
+  subcategory: Capacity
+  question: Has the service been load tested for expected peak demand (for example deadlines, announcements, seasonal peaks)?
+  evidence: Load test results; capacity plan.
+  weight: 1
+  critical: false
+  recommendation: Load test for expected peaks and plan capacity ahead of known high-demand events.
+  source: Good practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Google site reliability engineering books
+    url: https://sre.google/books/
+- id: OPS-10
+  category: OPS
+  subcategory: Change
+  question: Can changes be released safely and frequently, with automated testing, rollback, and change windows communicated to support teams?
+  evidence: Release process; deployment frequency; rollback evidence.
+  weight: 1
+  critical: false
+  recommendation: Automate testing and deployment, make releases small and reversible, and tell support teams about changes before they go live.
+  source: GOV.UK Service Standard point 8; DORA software delivery metrics
+  source_version: DORA five-metric model
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: DORA software delivery metrics
+    url: https://dora.dev/guides/dora-metrics/
+- id: OPS-11
+  category: OPS
+  subcategory: Reporting
+  question: Is service availability and performance reported regularly to the service owner and governance?
+  evidence: Performance reports to governance.
+  weight: 1
+  critical: false
+  recommendation: Report availability, performance and incident trends to the service owner and governance on a regular cycle.
+  source: AU Digital Performance Standard criterion 5; GOV.UK Service Standard point 10
+  source_version: AU DPS 1.0
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: AU Digital Performance Standard
+    url: https://www.digital.gov.au/policy/digital-experience/digital-performance-standard
+- id: SUP-01
+  category: SUP
+  subcategory: Contact information
+  question: Is a contact page linked from the home page that includes non-digital channels (such as phone and postal address) and information for NZ Relay users?
+  evidence: Contact page URL and content.
+  weight: 3
+  critical: true
+  recommendation: Provide a contact page linked from the home page with digital and non-digital contact options, including NZ Relay information.
+  source: Web Usability Standard 1.4 s2.3 (Contact information; NZ Relay link at s2.3.3)
+  source_version: WUS 1.4
+  nz_status: mandatory
+  applies_to: public-facing
+  link:
+    label: NZ Web Usability Standard 1.4
+    url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/web-usability-standard-1-4
+  review_note: WUS 1.4 added requirements supporting non-digital access channels.
+- id: SUP-02
+  category: SUP
+  subcategory: In-service help
+  question: Is help available at the point of need within the service (help text, FAQs, guidance), in a consistent location on each page?
+  evidence: Help content; audit findings for WCAG SC 3.2.6.
+  weight: 2
+  critical: false
+  recommendation: Provide contextual help where users need it and keep help mechanisms in the same place on every page.
+  source: WCAG 2.2 SC 3.2.6 (consistent help); Nielsen heuristic 10
+  source_version: WCAG 2.2 A
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: 'NN/g: help and documentation'
+    url: https://www.nngroup.com/articles/help-and-documentation/
+- id: SUP-03
+  category: SUP
+  subcategory: Accessibility support
+  question: Can people ask for accessibility help in more than one way, and does the agency reply to accessibility questions within 3 days?
+  evidence: Accessibility contact options; response time records.
+  weight: 2
+  critical: false
+  recommendation: Offer several ways to ask for accessibility help and respond within 3 days, saying when a full answer will be provided.
+  source: Draft Digital Accessibility Standard (consultation draft)
+  source_version: DAS draft (Jul 2026)
+  nz_status: recommended
+  applies_to: public-facing
+  link:
+    label: NZ Digital Accessibility Standard (draft)
+    url: https://www.digital.govt.nz/standards-and-guidance/nz-government-web-standards/digital-accessibility-standard
+  review_note: Draft requirement - confirm when DAS is finalised (expected early 2027).
+- id: SUP-04
+  category: SUP
+  subcategory: Support model
+  question: Is there a defined support model - support tiers, hours, response targets and escalation - and are front-line staff trained on the service?
+  evidence: Support model document; training records; knowledge base.
+  weight: 2
+  critical: false
+  recommendation: Define support tiers, hours and response targets, train front-line staff on the service and keep a shared knowledge base up to date.
+  source: Good practice (ITIL service desk)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Use your organisation's internal guidance
+    url: ''
+- id: SUP-05
+  category: SUP
+  subcategory: Feedback
+  question: Can users give feedback on each page and at the end of a transaction, and is it reviewed and acted on?
+  evidence: Feedback mechanism; feedback log and actions.
+  weight: 2
+  critical: false
+  recommendation: Add feedback options on each page and at the end of transactions, review feedback regularly and close the loop on changes made.
+  source: AU Digital Performance Standard criterion 4
+  source_version: AU DPS 1.0
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: AU Digital Performance Standard
+    url: https://www.digital.gov.au/policy/digital-experience/digital-performance-standard
+- id: SUP-06
+  category: SUP
+  subcategory: Assisted channels
+  question: Can people who cannot use the digital service complete the same task through an assisted or offline channel with an equivalent outcome?
+  evidence: Assisted digital / offline process description.
+  weight: 2
+  critical: false
+  recommendation: Provide an assisted or offline route that achieves the same outcome, and make sure it is promoted and resourced.
+  source: Digital Service Design Standard; GOV.UK Service Standard point 3; AU DSS 2.0 criterion 3
+  source_version: ''
+  nz_status: recommended
+  applies_to: public-facing
+  link:
+    label: 'GOV.UK: join up across channels'
+    url: https://www.gov.uk/service-manual/service-standard/point-3-join-up-across-channels
+- id: SUP-07
+  category: SUP
+  subcategory: Complaints
+  question: Is there a published complaints process with timeframes and information about escalation (for example to the Ombudsman or Privacy Commissioner)?
+  evidence: Complaints process URL.
+  weight: 1
+  critical: false
+  recommendation: Publish a complaints process with timeframes and information on how to escalate to the Ombudsman or Privacy Commissioner.
+  source: 'Ombudsman guidance: Effective complaint handling'
+  source_version: ''
+  nz_status: good-practice
+  applies_to: public-facing
+  link:
+    label: 'Ombudsman: effective complaint handling'
+    url: https://www.ombudsman.parliament.nz/resources/effective-complaint-handling
+- id: LEG-01
+  category: LEG
+  subcategory: Copyright
+  question: Is a copyright and licensing statement linked from the home page, applying NZGOAL open licensing where appropriate?
+  evidence: Copyright statement URL.
+  weight: 1
+  critical: false
+  recommendation: Publish a copyright statement linked from the home page and apply NZGOAL licensing to reusable content where appropriate.
+  source: Web Usability Standard 1.4 s2.4 (Copyright); NZGOAL
+  source_version: WUS 1.4
+  nz_status: mandatory
+  applies_to: public-facing
+  link:
+    label: NZGOAL open licensing framework
+    url: https://www.data.govt.nz/manage-data/policies/nzgoal
+- id: LEG-02
+  category: LEG
+  subcategory: Records
+  question: Are records created by the service captured, kept and disposed of in line with the Public Records Act and the agency's disposal authority?
+  evidence: Records management assessment; disposal authority reference.
+  weight: 2
+  critical: false
+  recommendation: Assess the service against Archives NZ requirements, ensure records are captured and retained correctly, and apply the relevant disposal authority.
+  source: Public Records Act 2005; Archives NZ Information and Records Management Standard (16/S1)
+  source_version: ''
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: Archives NZ records management standard
+    url: https://archives.govt.nz/manage-information/how-to-manage-your-information/key-obligations-and-the-standard/information-and-records-management-standard
+- id: LEG-03
+  category: LEG
+  subcategory: Information access
+  question: Can information held by the service be found and retrieved to respond to Official Information Act and Privacy Act access requests within statutory timeframes?
+  evidence: Retrieval process; test retrieval.
+  weight: 1
+  critical: false
+  recommendation: Make sure information can be searched and extracted to answer OIA and Privacy Act requests within statutory timeframes.
+  source: Official Information Act 1982; Privacy Act 2020 IPP 6
+  source_version: ''
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: Official Information Act 1982
+    url: https://www.legislation.govt.nz/act/public/1982/156/en/latest/
+- id: LEG-04
+  category: LEG
+  subcategory: Equal access
+  question: Has the service been checked to ensure it does not discriminate, and that disabled people and other groups have equivalent access to the service and information?
+  evidence: Equity or inclusion assessment; accessibility evidence.
+  weight: 2
+  critical: false
+  recommendation: Assess the service for discriminatory effects and barriers to access, and provide equivalent access routes where barriers can't be removed.
+  source: Human Rights Act 1993; NZ Bill of Rights Act 1990; UNCRPD
+  source_version: ''
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: Human Rights Act 1993
+    url: https://www.legislation.govt.nz/act/public/1993/82/en/latest/
+- id: LEG-05
+  category: LEG
+  subcategory: Legal basis
+  question: Does the service accurately reflect its legal basis - eligibility rules, statutory timeframes, fees and rights of review or appeal?
+  evidence: Legal review sign-off of rules and content.
+  weight: 2
+  critical: false
+  recommendation: Have the service's rules and content reviewed against the empowering legislation, and tell users about their rights of review or appeal.
+  source: Empowering legislation for the service
+  source_version: Service-specific
+  nz_status: mandatory
+  applies_to: transactional
+  link:
+    label: Refer to your service's own legislation
+    url: ''
+- id: LEG-06
+  category: LEG
+  subcategory: Terms of use
+  question: Are terms of use published for transactional or authenticated services, in plain language?
+  evidence: Terms of use URL.
+  weight: 1
+  critical: false
+  recommendation: Publish plain language terms of use covering acceptable use, liability and how accounts and data are managed.
+  source: Good practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: authenticated
+  link:
+    label: Use your organisation's internal guidance
+    url: ''
+- id: LEG-07
+  category: LEG
+  subcategory: Algorithms and AI
+  question: If the service uses algorithms or AI that affect people, has this been assessed against NZ Government AI and algorithm guidance, with transparency for users?
+  evidence: Algorithm/AI assessment; public explanation.
+  weight: 1
+  critical: false
+  recommendation: Assess algorithmic and AI use against NZ Government guidance and the Algorithm Charter (if a signatory), and explain to users how decisions are made.
+  source: Algorithm Charter for Aotearoa New Zealand; Public Service AI Framework (2025)
+  source_version: ''
+  nz_status: recommended
+  applies_to: uses-ai
+  link:
+    label: Algorithm Charter for Aotearoa NZ
+    url: https://data.govt.nz/algorithm-charter/
+- id: LEG-08
+  category: LEG
+  subcategory: Te Tiriti
+  question: Have the Crown's obligations under Te Tiriti o Waitangi been considered in the design of the service, including Māori users' needs?
+  evidence: Engagement records; design decisions.
+  weight: 1
+  critical: false
+  recommendation: Engage with Māori users and partners in design and consider how the service supports the Crown's relationship with Māori.
+  source: Public Service Act 2020 s14; Digital Service Design Standard
+  source_version: ''
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: Public Service Act 2020, section 14
+    url: https://www.legislation.govt.nz/act/public/2020/0040/latest/LMS356875.html
+- id: LEG-09
+  category: LEG
+  subcategory: Legislative compliance
+  question: Has the service identified the legislation it is subject to - including service-specific legislation such as the Planning Act and Natural Environment Act where relevant - and confirmed it meets the relevant provisions, including equal access, legal basis, public records and information access?
+  evidence: Register of legislation that applies to the service, with each obligation and how it is met; legal review sign-off; links to evidence for LEG-02 to LEG-05.
+  weight: 3
+  critical: false
+  recommendation: Create and maintain a register of the legislation the service is subject to - including service-specific Acts such as the Planning Act and Natural Environment Act, and cross-cutting obligations on equal access, legal basis, public records and information access - have it reviewed by legal advisors, and re-check it when legislation or the service changes.
+  source: Planning Act; Natural Environment Act; Human Rights Act 1993; NZ Bill of Rights Act 1990; Public Records Act 2005; Official Information Act 1982; Privacy Act 2020
+  source_version: Planning Act and Natural Environment Act in force 30 Sep 2026 (transitional provisions apply)
+  nz_status: mandatory
+  applies_to: all
+  link:
+    label: Planning and Natural Environment Acts overview
+    url: https://www.buddlefindlay.com/insights/resource-management-reform-an-overview-of-the-planning-act-and-natural-environment-act/
+  review_note: Catch-all legal criterion at weight 3 (v1.10) so legislative obligations are covered in the simple set. Detailed checks remain at LEG-02 to LEG-05. The Planning Act and Natural Environment Act replace the Resource Management Act system with transitional arrangements - confirm which provisions apply to the service.
+- id: CMG-01
+  category: CMG
+  subcategory: Ownership
+  question: Is there a named service owner accountable for the service's user experience, roadmap and budget?
+  evidence: Named owner and terms of reference.
+  weight: 2
+  critical: false
+  recommendation: Appoint a service owner with the authority and budget to improve the service over its lifetime.
+  source: GOV.UK Service Standard point 6
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'GOV.UK: have a multidisciplinary team'
+    url: https://www.gov.uk/service-manual/service-standard/point-6-have-a-multidisciplinary-team
+- id: CMG-02
+  category: CMG
+  subcategory: Content lifecycle
+  question: Does each piece of content have an owner and review date, with outdated content updated, archived or removed?
+  evidence: Content inventory with owners and review dates.
+  weight: 2
+  critical: false
+  recommendation: Assign owners and review dates to all content, review at least annually and remove or archive content that is out of date.
+  source: Good practice; WAS 1.2 (inactive web pages)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: US digital-first experience memo
+    url: https://www.whitehouse.gov/wp-content/uploads/2023/09/M-23-22-Delivering-a-Digital-First-Public-Experience.pdf
+- id: CMG-03
+  category: CMG
+  subcategory: Accessible authoring
+  question: Does the content management system support accessible authoring - enforcing headings, alt text, link text and accessibility checks before publishing?
+  evidence: CMS configuration; authoring guidance.
+  weight: 2
+  critical: false
+  recommendation: Configure the CMS to prompt for and check accessibility (alt text, headings, link text) and block publishing of known errors.
+  source: W3C ATAG 2.0
+  source_version: ATAG 2.0
+  nz_status: good-practice
+  applies_to: uses-cms
+  link:
+    label: W3C authoring tool guidelines (ATAG)
+    url: https://www.w3.org/WAI/standards-guidelines/atag/
+- id: CMG-04
+  category: CMG
+  subcategory: Publishing workflow
+  question: Is there a publishing workflow with review and approval, and are content authors trained in plain language and accessibility?
+  evidence: Workflow configuration; training records.
+  weight: 1
+  critical: false
+  recommendation: Set up a review and approval workflow and train authors in plain language, accessibility and the style guide.
+  source: Good practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: uses-cms
+  link:
+    label: W3C authoring tool guidelines (ATAG)
+    url: https://www.w3.org/WAI/standards-guidelines/atag/
+- id: CMG-05
+  category: CMG
+  subcategory: Link health
+  question: Are broken links, redirects and URL changes monitored and managed?
+  evidence: Link checker results; redirect register.
+  weight: 1
+  critical: false
+  recommendation: Run regular broken-link checks and maintain redirects when URLs change.
+  source: Good practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Use your organisation's internal guidance
+    url: ''
+- id: CMG-06
+  category: CMG
+  subcategory: Sustained funding
+  question: Is ongoing funding and capacity in place to keep improving the service after launch, not only for the initial project?
+  evidence: Budget line; team capacity plan.
+  weight: 2
+  critical: false
+  recommendation: Secure ongoing funding and a team to maintain and improve the service across its lifetime.
+  source: Digital Service Design Standard; AU DSS 2.0 criterion 10 (keep it relevant)
+  source_version: ''
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: NZ Digital Service Design principles
+    url: https://www.digital.govt.nz/standards-and-guidance/digital-service-design-standard/principles
+- id: CMG-07
+  category: CMG
+  subcategory: Content management
+  question: Is there an agreed content management approach for the service - named content owners, a review schedule, a publishing workflow with approval, and accessible authoring - and is it being followed?
+  evidence: Content management plan; content inventory with owners and review dates; publishing workflow records from the last 3 months.
+  weight: 3
+  critical: false
+  recommendation: Put in place and follow a content management approach with named owners, scheduled reviews, an approval workflow and accessible authoring, so content stays accurate, current and consistent.
+  source: OMB M-23-22 (content pillar); W3C ATAG 2.0; good practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: US digital-first experience memo
+    url: https://www.whitehouse.gov/wp-content/uploads/2023/09/M-23-22-Delivering-a-Digital-First-Public-Experience.pdf
+  review_note: 'Weight 3: content management, governance, measurement and continuous improvement are critical to app health and hygiene, and therefore have a consequential impact on user experience if not considered as part of the assessment. Added in v1.10.'
+- id: CMG-08
+  category: CMG
+  subcategory: Governance
+  question: Does the service have clear governance - a named service owner, defined decision rights, a regular forum that reviews performance, risks and the improvement roadmap, and funding for ongoing maintenance?
+  evidence: Terms of reference; recent governance minutes; risk register; funded roadmap.
+  weight: 3
+  critical: false
+  recommendation: Establish governance for the service with a named owner, clear decision rights, a regular review of performance, risks and roadmap, and ongoing funding for maintenance and improvement.
+  source: GOV.UK Service Standard point 6; Digital Service Design Standard; AU Digital Service Standard 2.0 criterion 10 (keep it relevant)
+  source_version: ''
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: 'GOV.UK: have a multidisciplinary team'
+    url: https://www.gov.uk/service-manual/service-standard/point-6-have-a-multidisciplinary-team
+  review_note: 'Weight 3: content management, governance, measurement and continuous improvement are critical to app health and hygiene, and therefore have a consequential impact on user experience if not considered as part of the assessment. Added in v1.10.'
+- id: MSR-01
+  category: MSR
+  subcategory: Success measures
+  question: Are success measures defined for the service (for example completion rate, user satisfaction, cost per transaction, digital take-up) and tracked?
+  evidence: Measurement framework; dashboard.
+  weight: 2
+  critical: false
+  recommendation: Define success measures linked to the service's purpose and track them in a dashboard the team reviews regularly.
+  source: GOV.UK Service Standard point 10; AU Digital Performance Standard criterion 3
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: 'GOV.UK: define and measure success'
+    url: https://www.gov.uk/service-manual/service-standard/point-10-define-success-publish-performance-data
+- id: MSR-02
+  category: MSR
+  subcategory: Analytics
+  question: Is web analytics implemented in a privacy-respecting way (no personal information in URLs or events, clear notice in the privacy statement)?
+  evidence: Analytics configuration review.
+  weight: 1
+  critical: false
+  recommendation: Configure analytics to exclude personal information and describe analytics use in the privacy statement.
+  source: Privacy Act 2020; OMB M-23-22 (analytics pillar); OWASP ASVS 5.0.0 V14 (Data Protection)
+  source_version: ASVS 5.0.0
+  nz_status: recommended
+  applies_to: all
+  link:
+    label: Privacy Act 2020
+    url: https://www.legislation.govt.nz/act/public/2020/31/en/latest/
+  review_note: OWASP ASVS is referenced by chapter ID only. No ASVS requirement text is reproduced (ASVS is CC BY-SA 4.0). In the app, cite requirement IDs in the form v5.0.0-<chapter>.<section>.<requirement>.
+- id: MSR-03
+  category: MSR
+  subcategory: Satisfaction
+  question: Is user satisfaction measured (for example CSAT or the System Usability Scale) and are results used to prioritise improvements?
+  evidence: Satisfaction results over time; linked backlog items.
+  weight: 2
+  critical: false
+  recommendation: Measure user satisfaction consistently over time and use results to prioritise improvements.
+  source: AU Digital Performance Standard criterion 4; System Usability Scale
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: System Usability Scale (Brooke, 1996)
+    url: https://verdi.cs.ucl.ac.uk/constructDB/publications/brooke-susa-1996.html
+- id: MSR-04
+  category: MSR
+  subcategory: Improvement
+  question: Is there a prioritised improvement backlog fed by research, analytics, feedback and support data, with improvements released regularly?
+  evidence: Backlog; release notes.
+  weight: 2
+  critical: false
+  recommendation: Maintain a single prioritised backlog drawing on research, analytics, feedback and support trends, and release improvements regularly.
+  source: GOV.UK Service Standard point 8
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: GOV.UK Service Standard (14 points)
+    url: https://www.gov.uk/service-manual/service-standard
+- id: MSR-05
+  category: MSR
+  subcategory: Health check cycle
+  question: Is this UX health check repeated at least annually and after major change, with progress against previous recommendations tracked?
+  evidence: Previous health check reports and action tracking.
+  weight: 1
+  critical: false
+  recommendation: Repeat the UX health check at least annually and after major change, and track progress on previous recommendations.
+  source: Good practice
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: Use your organisation's internal guidance
+    url: ''
+- id: MSR-06
+  category: MSR
+  subcategory: Measurement
+  question: Is the service's performance measured against agreed indicators - for example availability, task completion, user satisfaction, and open accessibility and usability issues - with results reported to the service owner at least quarterly?
+  evidence: Agreed indicator set; performance dashboard; the last four quarterly reports.
+  weight: 3
+  critical: false
+  recommendation: Agree a small set of performance indicators covering availability, task completion, satisfaction and open accessibility and usability issues, and report them to the service owner at least quarterly.
+  source: AU Digital Performance Standard criteria 1-5; GOV.UK Service Standard point 10
+  source_version: AU DPS 1.0
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: AU Digital Performance Standard
+    url: https://www.digital.gov.au/policy/digital-experience/digital-performance-standard
+  review_note: 'Weight 3: content management, governance, measurement and continuous improvement are critical to app health and hygiene, and therefore have a consequential impact on user experience if not considered as part of the assessment. Added in v1.10.'
+- id: MSR-07
+  category: MSR
+  subcategory: Continuous improvement
+  question: Is there a regular, resourced improvement cycle where insights from research, analytics, feedback, incidents and health checks are turned into prioritised changes that are released and their impact measured?
+  evidence: Improvement backlog; release history; before-and-after measures for recent changes.
+  weight: 3
+  critical: false
+  recommendation: Run a regular improvement cycle that turns insights from research, analytics, feedback, incidents and health checks into prioritised changes, releases them, and measures their impact.
+  source: GOV.UK Service Standard point 8; AU Digital Service Standard 2.0 criterion 10 (keep it relevant)
+  source_version: ''
+  nz_status: good-practice
+  applies_to: all
+  link:
+    label: GOV.UK Service Standard (14 points)
+    url: https://www.gov.uk/service-manual/service-standard
+  review_note: 'Weight 3: content management, governance, measurement and continuous improvement are critical to app health and hygiene, and therefore have a consequential impact on user experience if not considered as part of the assessment. Added in v1.10.'
