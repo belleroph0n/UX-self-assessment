@@ -46,7 +46,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check links in the content files
+        id: lychee
         uses: lycheeverse/lychee-action@v2
         with:
-          args: --config lychee.toml content/
-          fail: true
+          args: --config lychee.toml --format markdown content/
+          output: lychee/out.md
+          fail: false
+      - name: Report broken links
+        if: steps.lychee.outputs.exit_code != 0
+        run: |
+          # Each broken link becomes an annotation on the pull request
+          grep -E '^\* \[' lychee/out.md | while IFS= read -r line; do
+            echo "::error title=Broken link::${line#\* }"
+          done
+          if ! grep -qE '^\* \[' lychee/out.md; then
+            echo "::error title=Link check report::$(head -c 3000 lychee/out.md | tr '\n' ' ')"
+          fi
+          exit 1
