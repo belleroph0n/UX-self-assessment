@@ -31,22 +31,26 @@ test("complete a simple assessment and get the expected report", async ({ page }
   await checkA11y(page, "service details");
 
   await page.getByRole("link", { name: /^Next: Service profile/ }).click();
+  await expect(page.getByRole("heading", { level: 1, name: "Service profile" })).toBeVisible();
   for (const group of await page.locator("fieldset.question").all()) {
     await group.getByLabel("Yes", { exact: true }).check();
   }
   await checkA11y(page, "service profile");
 
-  // Answer every question 'Yes' except one 'No' on a critical criterion
-  let next = page.getByRole("link", { name: /^Next: / });
-  while (!(await page.getByRole("heading", { level: 1, name: "Materiality" }).isVisible())) {
-    await next.click();
-    if (await page.getByRole("heading", { level: 1, name: "Materiality" }).isVisible()) break;
+  // Answer every question 'Yes' except one 'No' on a critical criterion.
+  // After each click, wait for the next page's heading before reading its questions.
+  const h1 = page.locator("h1");
+  for (;;) {
+    const before = (await h1.textContent()) ?? "";
+    await page.getByRole("link", { name: /^Next: / }).click();
+    await expect(h1).not.toHaveText(before);
+    const title = await h1.textContent();
+    if (title === "Materiality") break;
     for (const q of await page.locator("fieldset.question").all()) {
       const id = (await q.locator(".qid").textContent())?.trim();
       await q.getByLabel(id === "ACC-05" ? "No" : "Yes", { exact: true }).check();
     }
-    if ((await page.locator("h1").textContent()) === "Accessibility") await checkA11y(page, "questions");
-    next = page.getByRole("link", { name: /^Next: / });
+    if (title === "Accessibility") await checkA11y(page, "questions");
   }
 
   for (const q of await page.locator("fieldset.question").all()) {
