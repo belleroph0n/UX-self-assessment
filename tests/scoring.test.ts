@@ -33,7 +33,9 @@ describe.each(["simple", "detailed"] as const)("UX health score matches the work
     expect(r.final).toBeCloseTo(fx.expected.final, 9);
   });
   it("rating and critical failures", () => {
-    expect(r.rating?.label).toBe(fx.expected.rating);
+    // The workbook used the original rating labels; compare by rating id
+    const WORKBOOK_LABEL: Record<string, string> = { Healthy: "healthy", "Good, with gaps": "good", "Needs attention": "needs-attention", "At risk": "at-risk" };
+    expect(r.rating?.id).toBe(WORKBOOK_LABEL[fx.expected.rating]);
     expect(r.criticalFailures.length).toBe(fx.expected.critical_failures);
   });
   it("category scores", () => {
@@ -67,8 +69,8 @@ describe("critical failure rule", () => {
 });
 
 describe("colour bands follow the ratings", () => {
-  const cases: [number, string, string][] = [[100, "Healthy", "green"], [85, "Healthy", "green"], [84.9, "Good, with gaps", "yellow"],
-    [70, "Good, with gaps", "yellow"], [69.9, "Needs attention", "amber"], [50, "Needs attention", "amber"], [49.9, "At risk", "red"]];
+  const cases: [number, string, string][] = [[100, "Strong", "green"], [85, "Strong", "green"], [84.9, "Good", "yellow"],
+    [70, "Good", "yellow"], [69.9, "Developing", "amber"], [50, "Developing", "amber"], [49.9, "Priority focus", "red"]];
   it.each(cases)("score %d is %s (%s)", (score, label, colour) => {
     const rating = C.scoring.ratings.find((r) => score >= r.min)!;
     expect(rating.label).toBe(label);
@@ -123,7 +125,7 @@ describe("materiality", () => {
   });
   it("compares the UX score with the tier target", () => {
     const a = assessment("simple", fixture.simple.answers, fixture.materiality.answers);
-    const ux = scoreUx(C, a); // 69.3, Needs attention
+    const ux = scoreUx(C, a); // 69.3, Developing
     const tiers = Object.fromEntries(C.tiers.tiers.map((t) => [t.id, t]));
     expect(meetsTierTarget(C, ux, tiers.silver)).toBe(true);
     expect(meetsTierTarget(C, ux, tiers.gold)).toBe(false);

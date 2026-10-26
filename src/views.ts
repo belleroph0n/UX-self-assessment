@@ -1,13 +1,14 @@
 import { h, extLink, uid } from "./dom";
 import { app, go } from "./main";
-import type { Answer, Assessment, Content, Criterion, ProfileQuestion } from "./types";
+import type { Answer, Assessment, Content, Criterion, ProfileQuestion, Rating } from "./types";
 import { applies, criteriaFor, effectiveAnswer, meetsTierTarget, newAssessment, scoreMateriality, scoreUx } from "./scoring";
 import { clearSaved, exportFile, parseImport } from "./store";
 
 interface Page { title: string; node: Node; }
 interface Step { path: string; label: string; progress?: string; complete?: boolean; }
 
-const ANSWER_LABELS: Record<Answer, string> = { yes: "Yes", partial: "Partly", no: "No", na: "Doesn't apply" };
+const ANSWER_LABELS: Record<Answer, string> = { yes: "Yes", partial: "Partly", no: "Not yet", na: "Doesn't apply" };
+const IN_PLACE_LABELS: Partial<Record<Answer, string>> = { partial: "Partly in place", no: "Not yet in place" };
 /** The single-file preview runs in a sandboxed frame where dialogs, printing and downloads are blocked. */
 const PREVIEW = import.meta.env.MODE === "single";
 const ask = (message: string) => (PREVIEW ? true : confirm(message));
@@ -206,7 +207,7 @@ function profile(content: Content, a: Assessment): Page {
 
 // ---------------------------------------------------------------- questions
 
-function questionBlock(c: Criterion, a: Assessment, detailed: boolean): HTMLElement {
+function questionBlock(c: Criterion, a: Assessment, detailed: boolean, criticalCap: number): HTMLElement {
   const name = `answer-${c.id}`;
   const noteId = uid("note");
   const tags = h("p", { class: "tags" },
@@ -215,7 +216,7 @@ function questionBlock(c: Criterion, a: Assessment, detailed: boolean): HTMLElem
   return h("fieldset", { class: "question", id: `q-${c.id}` },
     h("legend", {}, h("span", { class: "qid" }, c.id), " ", c.question),
     tags,
-    c.critical ? h("p", { class: "hint small" }, "A 'No' to a critical question caps the overall score at 60 and is listed first in the report.") : null,
+    c.critical ? h("p", { class: "hint small" }, `This is a critical criterion. If it's not yet in place, it's listed first in your recommendations and the score is capped at ${criticalCap} until it is.`) : null,
     h("div", { class: "options" },
       ...(["yes", "partial", "no", "na"] as Answer[]).map((v) => h("label", { class: "option" },
         h("input", { type: "radio", name, value: v, checked: a.answers[c.id] === v,
@@ -247,7 +248,7 @@ function questions(content: Content, a: Assessment, catId: string): Page {
     h("p", { class: "lede" }, cat.description),
     hidden ? h("p", { class: "note" }, `${hidden} question${hidden > 1 ? "s don't" : " doesn't"} apply based on your `,
       h("a", { href: "#/profile" }, "service profile"), " and won't be scored.") : null,
-    ...shown.map((c) => questionBlock(c, a, a.type === "detailed")),
+    ...shown.map((c) => questionBlock(c, a, a.type === "detailed", content.scoring.critical_cap)),
     saveStatus(),
     stepNav(content, a, `q/${catId}`)) };
 }
@@ -303,7 +304,7 @@ function report(content: Content, a: Assessment): Page {
   const bandText = bands.map((r, i) => {
     const upper = i === 0 ? "" : `-${bands[i - 1].min - 1}`;
     return i === 0 ? `${cap(r.colour)} ${r.min}+ ${r.label}` : r.min === 0 ? `${cap(r.colour)} below ${bands[i - 1].min} ${r.label}` : `${cap(r.colour)} ${r.min}${upper} ${r.label}`;
-  }).join(", ") + ". If any critical criteria are answered 'No', the score shows red.";
+  }).join(", ") + ". If any critical criteria are answered 'Not yet', the score shows red.";
 
   const incomplete = ux.unanswered > 0 || mat.answered < mat.total;
 
@@ -317,8 +318,7 @@ function report(content: Content, a: Assessment): Page {
         h("dt", {}, "Assessment"), h("dd", {}, `${a.type === "simple" ? "Simple" : "Detailed"}, question set v${content.meta.content_version}`),
         a.service.assessor ? [h("dt", {}, "Completed by"), h("dd", {}, a.service.assessor)] : null,
         h("dt", {}, "Date"), h("dd", {}, a.service.date || "-"))),
-    incomplete ? h("p", { class: "note warn" },
-      `The assessment isn't finished: ${ux.unanswered} question${ux.unanswered === 1 ? "" : "s"} and ${mat.total - mat.answered} materiality factor${mat.total - mat.answered === 1 ? "" : "s"} not answered. Results are based on the answers so far.`) : null,
+    incomplete ? h("p", { class: "note" }, `You have ${leftToAnswer(ux.unanswered, mat.total - mat.answered)} left to answer. These results are based on your answers so far.`) : null,
     h("div", { class: "actions no-print" },
       PREVIEW ? h("p", { class: "note" }, "This is a preview. Printing and downloading the assessment file work on the published site.") : [
         h("button", { type: "button", onclick: () => window.print() }, "Print or save as PDF"),
@@ -351,13 +351,15 @@ function report(content: Content, a: Assessment): Page {
         h("dt", {}, "Deciding factors rated 5"), h("dd", {}, String(mat.floorHits)),
         h("dt", {}, "Service tier"), h("dd", {}, mat.tier ? `${mat.tier.name} (${mat.agreedTier ? "agreed" : "suggested"})` : "-"),
         mat.agreedTier && a.agreed_tier_reason ? [h("dt", {}, "Reason for agreed tier"), h("dd", {}, a.agreed_tier_reason)] : null,
-        h("dt", {}, "Target for this tier"), h("dd", {}, mat.tier ? String(mat.tier.target_rating_text ?? target?.label ?? "-") : "-"),
-        h("dt", {}, "Meets the tier target"), h("dd", {}, meets === null ? "-" : meets ? "Yes" : "No"))),
+        h("dt", {}, "Tier target"), h("dd", {}, tierTargetText(target, meets)))),
+
+    strengths(content, a, ux),
 
     h("section", { "aria-labelledby": "s3" },
-      h("h2", { id: "s3" }, "Key recommendations"),
+      h("h2", { id: "s3" }, "Where to focus first"),
+      ux.key.length ? h("p", {}, "These are the changes likely to make the biggest difference, starting with any critical criteria.") : null,
       ux.key.length ? h("table", {},
-        h("caption", { class: "visually-hidden" }, "Key recommendations, most important first"),
+        h("caption", { class: "visually-hidden" }, "Where to focus first, most important first"),
         h("thead", {}, h("tr", {}, h("th", { scope: "col" }, "Rank"), h("th", { scope: "col" }, "Question"),
           h("th", { scope: "col" }, "Recommendation"), h("th", { scope: "col" }, "Supporting link"))),
         h("tbody", {}, ...ux.key.map((r, i) => h("tr", {},
@@ -365,7 +367,7 @@ function report(content: Content, a: Assessment): Page {
           h("td", { "data-label": "Question" }, r.criterion.id, r.criticalFailure ? h("span", { class: "tag critical" }, "Critical") : null),
           h("td", { "data-label": "Recommendation" }, r.criterion.recommendation),
           h("td", { "data-label": "Supporting link" }, extLink(r.criterion.link.url, r.criterion.link.label))))))
-        : h("p", {}, ux.answered ? "No recommendations: every answered question is a 'Yes'." : "Recommendations appear once you've answered questions.")),
+        : h("p", {}, ux.answered ? "Every criterion you answered is in place, so there's nothing to recommend." : "Recommendations appear once you've answered questions.")),
 
     h("section", { "aria-labelledby": "s4" },
       h("h2", { id: "s4" }, "Results by category"),
@@ -381,23 +383,47 @@ function report(content: Content, a: Assessment): Page {
           h("td", { class: "num", "data-label": "Percentage" }, c.percent === null ? "-" : `${Math.round(c.percent * 100)}%`)))))),
 
     ux.recommendations.length > ux.key.length ? h("section", { "aria-labelledby": "s5" },
-      h("h2", { id: "s5" }, "All recommendations"),
+      h("h2", { id: "s5" }, "All improvement opportunities"),
       ...ux.categories.filter((c) => ux.recommendations.some((r) => r.criterion.category === c.category.id)).map((c) =>
         h("div", { class: "rec-group" },
           h("h3", {}, c.category.name),
           h("ul", {}, ...ux.recommendations.filter((r) => r.criterion.category === c.category.id).map((r) =>
             h("li", {},
-              h("p", {}, h("strong", {}, `${r.criterion.id} (${ANSWER_LABELS[r.answer]}): `), r.criterion.recommendation),
+              h("p", {}, h("strong", {}, `${r.criterion.id} (${IN_PLACE_LABELS[r.answer]}): `), r.criterion.recommendation),
               a.notes[r.criterion.id] ? h("p", { class: "hint" }, `Note: ${a.notes[r.criterion.id]}`) : null,
               r.criterion.link.url ? h("p", { class: "small" }, extLink(r.criterion.link.url, r.criterion.link.label)) : null)))))) : null,
 
     h("section", { class: "note" },
       h("h2", {}, "Reading the two measures together"),
-      h("p", {}, "The UX health score shows how well the service supports a good experience now. Materiality shows how much it matters if it doesn't. A High or Critical service that doesn't meet its tier target should be fixed before a less material service with the same score.")),
+      h("p", {}, "The UX health score shows how well the service supports a good experience now. Materiality shows how much it matters if it doesn't. A High or Critical service that hasn't yet reached its tier target is a good candidate to prioritise ahead of a less material service with the same score.")),
     h("p", { class: "no-print" }, h("a", { href: "#/materiality", class: "button secondary" }, "Back: Materiality"))) };
 }
 
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? "" : "s"}`;
+
+function leftToAnswer(questions: number, factors: number): string {
+  return [questions ? plural(questions, "question") : "", factors ? plural(factors, "materiality factor") : ""]
+    .filter(Boolean).join(" and ");
+}
+
+function tierTargetText(target: Rating | null | undefined, meets: boolean | null): string {
+  if (!target || meets === null) return "-";
+  const goal = target.min > 0 ? `${target.label} (${target.min}+), with all critical criteria in place` : "all critical criteria in place";
+  return meets ? `Met: ${goal}` : `Working towards ${target.min > 0 ? goal : `having ${goal}`}`;
+}
+
+/** Recognises what's already in place: categories with every criterion met, and critical criteria in place. */
+function strengths(content: Content, a: Assessment, ux: ReturnType<typeof scoreUx>): HTMLElement | null {
+  const fullCats = ux.categories.filter((c) => c.available > 0 && c.earned === c.available);
+  const criticalInPlace = criteriaFor(content, a.type).filter((c) => c.critical && effectiveAnswer(c, a) === "yes");
+  if (!fullCats.length && !criticalInPlace.length) return null;
+  return h("section", { "aria-labelledby": "s-strengths" },
+    h("h2", { id: "s-strengths" }, "What's working well"),
+    fullCats.length ? h("p", {}, "Every criterion is in place in: ", fullCats.map((c) => c.category.name).join(", "), ".") : null,
+    criticalInPlace.length ? [h("p", {}, "Critical criteria in place:"),
+      h("ul", {}, ...criticalInPlace.map((c) => h("li", {}, `${c.id} ${c.subcategory}`)))] : null);
+}
 
 // ---------------------------------------------------------------- static pages
 
@@ -412,7 +438,7 @@ function about(content: Content): Page {
     h("p", {}, `The question set (v${content.meta.content_version}) has ${content.criteria.length} criteria in ${content.categories.length} categories. The simple assessment uses the ${criteriaFor(content, "simple").length} most important. They're drawn from NZ Government standards and legislation and international good practice. `,
       h("a", { href: "#/sources" }, "See the sources"), "."),
     h("h2", {}, "The UX health score"),
-    h("p", {}, `Each category is worth a share of 100 points. Answers score Yes ${content.scoring.answer_points.yes}, Partly ${content.scoring.answer_points.partial} and No ${content.scoring.answer_points.no}. Questions that don't apply are left out and the remaining categories are scaled back up to 100. A 'No' to any critical question caps the score at ${content.scoring.critical_cap}.`),
+    h("p", {}, `Each category is worth a share of 100 points. Answers score Yes ${content.scoring.answer_points.yes}, Partly ${content.scoring.answer_points.partial} and Not yet ${content.scoring.answer_points.no}. Questions that don't apply are left out and the remaining categories are scaled back up to 100. If any critical criteria are answered 'Not yet', the score is capped at ${content.scoring.critical_cap} until they're in place.`),
     h("table", {}, h("caption", {}, "Ratings"),
       h("thead", {}, h("tr", {}, h("th", { scope: "col" }, "Score"), h("th", { scope: "col" }, "Rating"))),
       h("tbody", {}, ...content.scoring.ratings.map((r) => h("tr", {}, h("td", {}, `${r.min} or more`), h("td", {}, r.label))))),
