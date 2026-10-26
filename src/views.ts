@@ -115,7 +115,7 @@ function home(content: Content): Page {
         h("a", { href: "#/service", class: "button secondary" }, "Review the answers")));
   };
 
-  return { title: "UX health check", node: h("div", { class: "home" },
+  return { title: "UX self assessment", node: h("div", { class: "home" },
     h("h1", {}, "Check the quality of your application's user experience"),
     h("p", { class: "lede" }, "This is a freely available resource designed to assist product and delivery teams in considering key criteria to optimise the User Experience (UX) with their application."),
     h("p", {}, "The assessment covers questions that would make the most difference to the UX. It provides a report containing a UX health score, application materiality, and any supporting recommendations. It is only intended as a guide and should not replace advice from experienced UX practitioners."),
@@ -134,7 +134,7 @@ function home(content: Content): Page {
             h("label", { class: "choice" },
               h("input", { type: "radio", name: "type", value: "simple", checked: true, id: typeName }),
               h("span", {}, h("strong", {}, `Simple: ${n("simple")} questions`),
-                h("span", { class: "hint" }, "The most important criteria in every category. Takes about 20 minutes. Recommended."))),
+                h("span", { class: "hint" }, "The most important criteria in every category. Takes 10-15 minutes. ", h("strong", {}, "Recommended.")))),
             h("label", { class: "choice" },
               h("input", { type: "radio", name: "type", value: "detailed" }),
               h("span", {}, h("strong", {}, `Detailed: ${n("detailed")} questions`),
@@ -310,7 +310,7 @@ function report(content: Content, a: Assessment): Page {
   return { title: "Report", node: h("div", { class: "report" },
     h("div", { class: "report-head" },
       h("p", { class: "step-count no-print" }, `Step ${steps(content, a).length} of ${steps(content, a).length}`),
-      h("h1", {}, `UX health check: ${a.service.name || "Unnamed service"}`),
+      h("h1", {}, `UX self assessment: ${a.service.name || "Unnamed application"}`),
       h("dl", { class: "meta" },
         a.service.organisation ? [h("dt", {}, "Organisation"), h("dd", {}, a.service.organisation)] : null,
         a.service.url ? [h("dt", {}, "Web address"), h("dd", {}, a.service.url)] : null,
