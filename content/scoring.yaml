@@ -1,6 +1,8 @@
 # Scoring parameters for the UX health score (both simple and detailed assessments).
 # ratings: a score at or above 'min' gets that rating; list from highest to lowest.
-# Any critical criterion answered 'no' caps the score at critical_cap and shows red.
+# If any critical criteria are answered 'no' (shown to assessors as 'Not yet'), the score is capped at
+# critical_cap and shows red. Rating labels describe where the application is on its journey;
+# the colour and the order of recommendations carry the urgency.
 
 answer_points:
   'yes': 1
@@ -9,21 +11,21 @@ answer_points:
 critical_cap: 60
 ratings:
 - id: healthy
-  label: Healthy
+  label: Strong
   min: 85
   colour: green
 - id: good
-  label: Good, with gaps
+  label: Good
   min: 70
   colour: yellow
 - id: needs-attention
-  label: Needs attention
+  label: Developing
   min: 50
   colour: amber
 - id: at-risk
-  label: At risk
+  label: Priority focus
   min: 0
   colour: red
-critical_failure_colour: red
+critical_criteria_colour: red
 key_recommendations: 5
 simple_set_weight: 3

@@ -3,6 +3,37 @@
 History of the criteria library, carried over from the Version tab of the original workbook.
 Each release records what changed and why.
 
+## v1.52 - 27 Oct 2026
+
+### Status
+
+Released with app v1.0.0
+
+### Prepared by
+
+Drafted with Claude (Anthropic AI assistant) for the product owner
+
+### Approved by
+
+Product owner (belleroph0n)
+
+### Summary
+
+Tone changes so the tool reads as a supportive guide for product and delivery teams. Gaps are framed as improvement opportunities, while the colour, the critical criteria and the order of recommendations still show what matters most. No changes to questions, weights or scoring.
+
+### Changes in this version
+
+- Answer option "No" now reads "Not yet" (stored value unchanged, so earlier assessment files still open)
+- Rating labels: Healthy to Strong; Good, with gaps to Good; Needs attention to Developing; At risk to Priority focus. Score bands and colours unchanged.
+- "Critical failure(s)" now "critical criteria", for example "Capped at 60 until this critical criterion is in place"
+- Service tier targets reworded, for example "Good (70+), with all critical criteria in place"
+- Report: new "What's working well" section; "Key recommendations" now "Where to focus first" with an introductory line; "All recommendations" now "All improvement opportunities"; answers shown as "Not yet in place" or "Partly in place"; neutral note for unanswered questions; tier target shown as "Met" or "Working towards"; reworded closing paragraph
+- Critical criteria hint on question pages reworded
+
+### Rationale
+
+People who complete the assessment already want to improve their application's user experience. Language that reads as criticism or oversight can discourage adoption. The changes keep the relative importance of recommendations clear while keeping the experience positive.
+
 ## v1.51 - 24 Oct 2026
 
 ### Status

@@ -47,3 +47,11 @@ GitHub Pages needs a public repository on GitHub's free plan. On a private repos
 ## 4. Peer review
 
 Invite reviewers as collaborators (**Settings > Collaborators**) or, once public, anyone can comment through issues and pull requests. The pull request template asks contributors to bump the content version and update the changelog.
+
+## Releasing a new version
+
+1. In the same pull request as your changes, increase `version` in `package.json` (for example `1.0.0` to `1.1.0`).
+2. Add release notes at `docs/releases/v1.1.0.md`. Start the file with a heading that becomes the release title, for example `# v1.1.0 - updated question set`.
+3. Merge the pull request. The **Release** workflow creates the tag and the release on GitHub automatically.
+
+If you change the question set, also increase `content_version` in `content/meta.yaml` and add an entry to `CHANGELOG.md`.

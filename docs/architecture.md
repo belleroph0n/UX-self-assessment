@@ -25,7 +25,7 @@ content/*.yaml --(tools/build-content.mjs: validate against schema + rules)--> s
 `src/scoring.ts` holds all scoring rules and has no browser code. It reproduces the v1.51 criteria workbook exactly; `tests/scoring.test.ts` compares its results with values recalculated from the workbook (`tests/fixtures/workbook-v1.51.json`).
 
 - **UX health score:** for each category, earned = sum of weight x answer points (Yes 1, Partly 0.5, No 0); available = sum of weights of answered questions (N/A excluded). Category score = earned / available x category points. Overall = sum of category scores / points of categories with answers x 100. Any critical "No" caps the score at 60 and shows red.
-- **Key recommendations:** every Partly or No, ranked with critical failures first, then by points lost.
+- **Key recommendations:** every Partly or No, ranked with critical criteria answered No first, then by points lost.
 - **Materiality:** weighted average of the factor ratings, rounded; at least 4 if user dependence, organisation dependence or consequence of failure is rated 5. Never combined with the UX score.
 - **Service tier:** suggested from the materiality rating; can be overridden with a reason.
 

@@ -2,8 +2,8 @@
 
 A UX self-assessment designed for a light-touch review of public-facing websites and applications developed for NZ Government. It checks the health of a service's user experience. Answer questions about the service to get:
 
-- a **UX health score** out of 100 with a rating (Healthy, Good with gaps, Needs attention, At risk)
-- the **key recommendations** that would make the most difference, each with a link to supporting guidance
+- a **UX health score** out of 100 with a rating (Strong, Good, Developing, Priority focus)
+- **what's working well**, and **where to focus first**: the improvements that would make the most difference, each with a link to supporting guidance
 - results by category
 - a separate **materiality rating** (1 Immaterial to 5 Critical) and a suggested **service tier**
 

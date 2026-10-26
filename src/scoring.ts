@@ -108,7 +108,7 @@ export function scoreUx(content: Content, a: Assessment): UxResult {
       criticalFailure: c.critical && ans === "no",
     });
   });
-  // critical failures first, then most points lost; ties keep criterion order (sort is stable)
+  // critical criteria answered No first, then most points lost; ties keep criterion order (sort is stable)
   recommendations.sort((x, y) => Number(y.criticalFailure) - Number(x.criticalFailure) || y.pointsLost - x.pointsLost);
 
   let answered = 0, na = 0, unanswered = 0;
@@ -160,7 +160,7 @@ export function scoreMateriality(content: Content, a: Assessment): MaterialityRe
            tier: agreedTier ?? suggestedTier };
 }
 
-/** Whether the UX result meets the target rating for a tier (and has no critical failures). */
+/** Whether the UX result meets the target rating for a tier (and has no critical criteria answered No). */
 export function meetsTierTarget(content: Content, ux: UxResult, tier: Tier | null): boolean | null {
   if (!tier || ux.final === null) return null;
   const target = content.scoring.ratings.find((r) => r.id === tier.target_rating);

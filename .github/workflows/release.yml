@@ -1,0 +1,36 @@
+# Creates a GitHub release when the version in package.json changes on main.
+# To release a new version: bump "version" in package.json and add release notes
+# at docs/releases/v<version>.md in the same pull request. The first line of the
+# notes (a "# " heading) becomes the release title. Merging creates the tag (for
+# example v1.0.0) and the release.
+name: Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - name: Create the release if this version hasn't been released
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          version="v$(node -p "require('./package.json').version")"
+          notes="docs/releases/${version}.md"
+          if gh release view "$version" >/dev/null 2>&1; then
+            echo "$version is already released."
+          elif [ ! -f "$notes" ]; then
+            echo "::warning::No release notes at $notes, so $version wasn't released."
+          else
+            title=$(head -n 1 "$notes" | sed 's/^# *//')
+            tail -n +2 "$notes" > release-body.md
+            gh release create "$version" --target "$GITHUB_SHA" \
+              --title "$title" --notes-file release-body.md --latest
+          fi

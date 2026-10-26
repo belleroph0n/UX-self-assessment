@@ -38,7 +38,7 @@ tiers:
   monitoring: 24/7 synthetic monitoring of key journeys at least every 5 minutes, with paging and a public status page
   maintenance: Outside business hours, with at least 5 business days' notice to users
   health_check_frequency: Every 6 months and after any major change
-  target_rating_text: Healthy (85+) with no critical criteria answered 'No'
+  target_rating_text: Strong (85+), with all critical criteria in place
   remediation: Critical findings within 1 month; high within 3 months
   reporting: Monthly to the service owner; quarterly to governance
   name: Platinum
@@ -55,7 +55,7 @@ tiers:
   monitoring: Synthetic monitoring of key journeys with alerts routed to the on-call team
   maintenance: Outside business hours where possible, with at least 5 business days' notice
   health_check_frequency: Annually and after any major change
-  target_rating_text: Good, with gaps (70+) with no critical criteria answered 'No'
+  target_rating_text: Good (70+), with all critical criteria in place
   remediation: Critical findings within 3 months; high within 6 months
   reporting: Monthly to the service owner; quarterly to governance
   name: Gold
@@ -72,7 +72,7 @@ tiers:
   monitoring: Uptime monitoring with alerts during business hours
   maintenance: With at least 2 business days' notice
   health_check_frequency: Annually
-  target_rating_text: Needs attention (50+) with no critical criteria answered 'No'
+  target_rating_text: Developing (50+), with all critical criteria in place
   remediation: Critical findings within 6 months; high planned into the next release cycle
   reporting: Quarterly to the service owner
   name: Silver
@@ -89,7 +89,7 @@ tiers:
   monitoring: Basic uptime monitoring
   maintenance: Any time, with notice where practical
   health_check_frequency: Every 2 years, or after major change
-  target_rating_text: No critical criteria answered 'No'
+  target_rating_text: All critical criteria in place
   remediation: Critical findings within 12 months, or risk formally accepted by the service owner
   reporting: Annually to the service owner
   name: Bronze

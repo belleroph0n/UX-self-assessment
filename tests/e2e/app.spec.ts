@@ -48,7 +48,7 @@ test("complete a simple assessment and get the expected report", async ({ page }
     if (title === "Materiality") break;
     for (const q of await page.locator("fieldset.question").all()) {
       const id = (await q.locator(".qid").textContent())?.trim();
-      await q.getByLabel(id === "ACC-05" ? "No" : "Yes", { exact: true }).check();
+      await q.getByLabel(id === "ACC-05" ? "Not yet" : "Yes", { exact: true }).check();
     }
     if (title === "Accessibility") await checkA11y(page, "questions");
   }
@@ -60,7 +60,7 @@ test("complete a simple assessment and get the expected report", async ({ page }
 
   await page.getByRole("link", { name: "See the report" }).click();
   await expect(page.getByRole("heading", { level: 1 })).toContainText("Test service");
-  await expect(page.locator(".result.tone-red .rating")).toHaveText("Needs attention");
+  await expect(page.locator(".result.tone-red .rating")).toHaveText("Developing");
   await expect(page.locator(".result.tone-red .figure")).toHaveText("60");
   await expect(page.locator(".result.mat-yellow .rating")).toHaveText("Moderate");
   await expect(page.getByRole("table").first().locator("tbody tr").first()).toContainText("ACC-05");
