@@ -7,6 +7,8 @@ import { newAssessment } from "./scoring";
 import { loadSaved, save } from "./store";
 import { renderPage, steps } from "./views";
 
+const SITE_NAME = "UX self assessment";
+
 export const content = data as unknown as Content;
 
 export const app = {
@@ -89,7 +91,7 @@ window.matchMedia("(min-width: 60rem)").addEventListener("change", () => renderS
 function render(): void {
   const main = document.getElementById("main")!;
   const page = renderPage(route(), content);
-  document.title = `${page.title} - UX health check`;
+  document.title = page.title === SITE_NAME ? SITE_NAME : `${page.title} - ${SITE_NAME}`;
   main.replaceChildren(page.node);
   renderStepNav();
   const h1 = main.querySelector("h1");

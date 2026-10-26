@@ -80,6 +80,9 @@ a:hover { color: var(--accent-dark); text-decoration-thickness: 2px; }
 /* ---------------------------------------------------------------- layout */
 .layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-top: 2rem; }
 main { max-width: var(--measure); min-width: 0; }
+/* Pages with wide tables (How it works) use the full width; their running text keeps a readable measure */
+main:has(.prose.wide) { max-width: none; }
+.prose.wide > :not(.table-scroll) { max-width: var(--measure); }
 @media (min-width: 60rem) {
   .layout:has(.step-nav:not([hidden])) { grid-template-columns: 15rem minmax(0, 1fr); }
 }
@@ -173,6 +176,7 @@ dd { margin: 0 0 0.5rem; }
 .choice:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 2px; }
 .choice input { width: 1.25rem; height: 1.25rem; margin: 0.15rem 0 0; accent-color: var(--accent); flex: none; }
 .choice strong, .choice .hint { display: block; }
+.choice .hint strong { display: inline; }
 .choice .hint { margin: 0.15rem 0 0; }
 
 .page-nav { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.5rem; margin-top: 2rem; padding-top: 1.25rem; border-top: 1px solid var(--rule); }

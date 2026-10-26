@@ -115,9 +115,10 @@ function home(content: Content): Page {
         h("a", { href: "#/service", class: "button secondary" }, "Review the answers")));
   };
 
-  return { title: "UX health check", node: h("div", { class: "home" },
-    h("h1", {}, "Check the health of your service's user experience"),
-    h("p", { class: "lede" }, "Answer questions about a website or application to get a score out of 100, the changes that would make the most difference, and a separate rating of how much the service matters to its users."),
+  return { title: "UX self assessment", node: h("div", { class: "home" },
+    h("h1", {}, "Check the quality of your application's user experience"),
+    h("p", { class: "lede" }, "This is a freely available resource designed to assist product and delivery teams in considering key criteria to optimise the User Experience (UX) with their application."),
+    h("p", {}, "The assessment covers questions that would make the most difference to the UX. It provides a report containing a UX health score, application materiality, and any supporting recommendations. It is only intended as a guide and should not replace advice from experienced UX practitioners."),
     h("p", {}, "The questions cover accessibility, usability, content, brand, security and privacy, reliability, support, legal obligations, content management and governance, and measurement. They're based on NZ Government standards and international good practice."),
     saved && (saved.service.name || Object.keys(saved.answers).length) ? h("section", { class: "panel" },
       h("h2", {}, "Continue where you left off"),
@@ -133,7 +134,7 @@ function home(content: Content): Page {
             h("label", { class: "choice" },
               h("input", { type: "radio", name: "type", value: "simple", checked: true, id: typeName }),
               h("span", {}, h("strong", {}, `Simple: ${n("simple")} questions`),
-                h("span", { class: "hint" }, "The most important criteria in every category. Takes about 20 minutes. Recommended."))),
+                h("span", { class: "hint" }, "The most important criteria in every category. Takes 10-15 minutes. ", h("strong", {}, "Recommended.")))),
             h("label", { class: "choice" },
               h("input", { type: "radio", name: "type", value: "detailed" }),
               h("span", {}, h("strong", {}, `Detailed: ${n("detailed")} questions`),
@@ -309,7 +310,7 @@ function report(content: Content, a: Assessment): Page {
   return { title: "Report", node: h("div", { class: "report" },
     h("div", { class: "report-head" },
       h("p", { class: "step-count no-print" }, `Step ${steps(content, a).length} of ${steps(content, a).length}`),
-      h("h1", {}, `UX health check: ${a.service.name || "Unnamed service"}`),
+      h("h1", {}, `UX self assessment: ${a.service.name || "Unnamed application"}`),
       h("dl", { class: "meta" },
         a.service.organisation ? [h("dt", {}, "Organisation"), h("dd", {}, a.service.organisation)] : null,
         a.service.url ? [h("dt", {}, "Web address"), h("dd", {}, a.service.url)] : null,
@@ -405,8 +406,8 @@ function about(content: Content): Page {
   const labels = t.field_labels ?? {};
   const rows = ["materiality", "when_to_use", "availability", "support_hours", "p1_incident", "p2_incident", "rto", "rpo",
     "monitoring", "maintenance", "health_check_frequency", "target_rating_text", "remediation", "reporting"];
-  return { title: "How it works", node: h("div", { class: "prose" },
-    h("h1", {}, "How the health check works"),
+  return { title: "How the UX self assessment works", node: h("div", { class: "prose wide" },
+    h("h1", {}, "How the UX self assessment works"),
     h("h2", {}, "The questions"),
     h("p", {}, `The question set (v${content.meta.content_version}) has ${content.criteria.length} criteria in ${content.categories.length} categories. The simple assessment uses the ${criteriaFor(content, "simple").length} most important. They're drawn from NZ Government standards and legislation and international good practice. `,
       h("a", { href: "#/sources" }, "See the sources"), "."),
@@ -449,8 +450,8 @@ function accessibility(): Page {
   return { title: "Accessibility", node: h("div", { class: "prose" },
     h("h1", {}, "Accessibility statement"),
     h("p", {}, "This tool aims to meet the Web Content Accessibility Guidelines (WCAG) 2.2 at level AA, in line with the NZ Government Web Accessibility Standard."),
-    h("p", {}, "Every change is checked automatically with the axe accessibility engine. Automated checks only find some issues, so manual testing with keyboard and screen readers is planned before formal release."),
-    h("p", {}, "The text uses Atkinson Hyperlegible, a typeface designed for readers with low vision. Colours are always paired with text, so no information depends on colour alone."),
+    h("p", {}, "Every change is checked automatically with the ", extLink("https://www.deque.com/axe/axe-core/", "Axe accessibility engine"), ". Automated checks only find some issues, so manual testing with keyboard and screen readers is planned before formal release."),
+    h("p", {}, "The text uses ", extLink("https://www.brailleinstitute.org/about-us/news/braille-institute-launches-enhanced-atkinson-hyperlegible-font-to-make-reading-easier/", "Atkinson Hyperlegible"), ", a typeface designed for readers with low vision. Colours are always paired with text, so no information depends on colour alone."),
     h("p", {}, "If something in this tool doesn't work for you, please raise an issue on the project's GitHub page.")) };
 }
 
