@@ -1,6 +1,6 @@
 # Scoring parameters for the UX health score (both simple and detailed assessments).
 # ratings: a score at or above 'min' gets that rating; list from highest to lowest.
-# Any critical criterion answered 'no' caps the score at critical_cap and shows red.
+# If any critical criteria are answered 'no', the score is capped at critical_cap and shows red.
 
 answer_points:
   'yes': 1
@@ -24,6 +24,6 @@ ratings:
   label: At risk
   min: 0
   colour: red
-critical_failure_colour: red
+critical_criteria_colour: red
 key_recommendations: 5
 simple_set_weight: 3

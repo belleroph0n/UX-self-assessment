@@ -303,7 +303,7 @@ function report(content: Content, a: Assessment): Page {
   const bandText = bands.map((r, i) => {
     const upper = i === 0 ? "" : `-${bands[i - 1].min - 1}`;
     return i === 0 ? `${cap(r.colour)} ${r.min}+ ${r.label}` : r.min === 0 ? `${cap(r.colour)} below ${bands[i - 1].min} ${r.label}` : `${cap(r.colour)} ${r.min}${upper} ${r.label}`;
-  }).join(", ") + ". Any critical failure shows red.";
+  }).join(", ") + ". If any critical criteria are answered 'No', the score shows red.";
 
   const incomplete = ux.unanswered > 0 || mat.answered < mat.total;
 
@@ -333,7 +333,7 @@ function report(content: Content, a: Assessment): Page {
       h("div", { class: `result tone-${ux.colour ?? "none"}` },
         h("p", { class: "big" }, h("span", { class: "figure" }, fmt(ux.final)), h("span", { class: "outof" }, " out of 100")),
         h("p", { class: "rating" }, ux.rating ? ux.rating.label : "Not scored yet"),
-        ux.criticalFailures.length ? h("p", {}, `Capped at ${content.scoring.critical_cap} because of ${ux.criticalFailures.length} critical failure${ux.criticalFailures.length > 1 ? "s" : ""}: `,
+        ux.criticalFailures.length ? h("p", {}, `Capped at ${content.scoring.critical_cap} until ${ux.criticalFailures.length > 1 ? "these critical criteria are" : "this critical criterion is"} in place: `,
           ux.criticalFailures.map((c) => c.id).join(", "), ".") : null),
       h("p", { class: "hint small" }, bandText),
       h("p", {}, `${ux.answered} answered, ${ux.na} not applicable, ${ux.unanswered} not answered, out of ${ux.total} questions.`)),
