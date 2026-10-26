@@ -80,6 +80,9 @@ a:hover { color: var(--accent-dark); text-decoration-thickness: 2px; }
 /* ---------------------------------------------------------------- layout */
 .layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2rem; padding-top: 2rem; }
 main { max-width: var(--measure); min-width: 0; }
+/* Pages with wide tables (How it works) use the full width; their running text keeps a readable measure */
+main:has(.prose.wide) { max-width: none; }
+.prose.wide > :not(.table-scroll) { max-width: var(--measure); }
 @media (min-width: 60rem) {
   .layout:has(.step-nav:not([hidden])) { grid-template-columns: 15rem minmax(0, 1fr); }
 }
